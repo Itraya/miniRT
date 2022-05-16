@@ -642,18 +642,41 @@ int	check_digits(char **lines)
 	return (0);
 }
 
+void	ft_increase(int m[3], char c)
+{
+	if (c == 'A')
+		m[0]++;
+	if (c == 'C')
+		m[1]++;
+	if (c == 'L')
+		m[2]++;
+}
+
+void	ft_null(int m[3])
+{
+	m[0] = 0;
+	m[1] = 0;
+	m[2] = 0;
+}
+
 int	ft_verif(char **lines)
 {
 	int		i;
 	char	**split;
+	int		m[3];
 
 	i = 0;
+	ft_null(m);
 	while (lines[i])
 	{
 		split = ft_split2(lines[i], ' ', '	');
 		if (!split)
 			return (0);
 		if (!ft_is_alpha(split[0]))
+			return (free_split(split));
+		if (split[0][0] == 'A' || split[0][0] == 'C' || split[0][0] == 'L')
+			ft_increase(m, split[0][0]);
+		if (m[0] > 1 || m[1] > 1 || m[2] > 1)
 			return (free_split(split));
 		if (!check_digits(split))
 			return (free_split(split));
