@@ -26,15 +26,15 @@ ERASE		= \033[2K\r
 ##********##
 ### NAME ###
 ##********##
-NAME	= miniRt
+NAME	= miniRT
 
 ##***************##
 ### COMPILATION ###
 ##**************###
-CC		= gcc
+CC		= gcc -Ofast
+CFLAGS	= -Wall -Wextra #-Werror #-g3 -fsanitize=address #-fsanitize=address -g3 #-framework CoreFoundation
+CMLX	= -framework OpenGL -framework AppKit -g -lmlx -Lmlx
 
-CFLAGS	= -Wall -Wextra -Werror #-g3 -fsanitize=address #-fsanitize=address -g3
-#-framework CoreFoundation
 ##*******************##
 ### DIRECTORY PATHS ###
 ##*******************##
@@ -60,6 +60,8 @@ SOURCES	=	debug.c					\
 			get_next_line_utils.c	\
 			get_next_line.c			\
 			main.c					\
+			windows.c				\
+			generator.c				\
 
 
 ##*********##
@@ -71,16 +73,18 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HEADER) Makefile
 			@printf "$(ERASE)$(BLUE)$(UNDERLINE)Compiling:$(END)$(CYAN)$<"
 			@${CC} ${CFLAGS} -c $< -o $@
 
-all:	${NAME}
+all:	mlx ${NAME}
 
 ${NAME}:	${OBJS}
-			@${CC} ${CFLAGS} ${OBJS} -o ${NAME}
-			@printf "\n$(GREEN)Successful compilation$(END)\n"
+				@${CC} ${CFLAGS} ${CMLX} ${OBJS} -o ${NAME}
+				@printf "\n$(GREEN)Successful compilation$(END)\n"
+
+mlx:
+		@make -C ${MLX}
 
 mini:	all
-		@./miniRT scenes/test.rt
-
-
+		@echo "$(VIOLET)you enter an area of testing, be carefull$(END)"
+		@./${NAME} scenes/test.rt
 
 clean:
 		@rm -f ${OBJS}
@@ -88,6 +92,7 @@ clean:
 
 fclean:	clean
 		@rm -f ${NAME}
+		@make -C ${MLX} clean
 		@printf "\n$(CYAN)Executable files cleaned\n$(END)"
 
 re:	fclean
@@ -118,4 +123,4 @@ sus:
 	@echo "$(WHITE)         ░▀▀█░█░█░▀▀█$(END)"
 	@echo "$(WHITE)         ░▀▀▀░▀▀▀░▀▀▀$(END)"
 
-.PHONY:	all clean fclean re sus
+.PHONY:	all clean fclean re sus mlx mini

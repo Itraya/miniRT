@@ -1,0 +1,8 @@
+#include "../incl/miniRT.h"
+
+void	generator(t_var *p)
+{
+	t_a *a;
+
+	a = p->struc[0];
+}

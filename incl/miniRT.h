@@ -2,15 +2,30 @@
 # define MINIRT_H
 
 # include <sys/types.h>
+# include "../mlx/mlx.h"
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
+typedef struct s_data
+{
+	void			*mlx;
+	void			*win;
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int				winwidth;
+	int				winlength;
+}					t_data;
+
 typedef struct s_var
 {
 	void	**struc;
+	t_data	*data;
 }				t_var;
 
 typedef struct s_a
@@ -85,5 +100,9 @@ int		ft_search(char *a, char c);
 void	ft_cut(char *a);
 char	*ft_free(char *a);
 char	*get_next_line(int fd);
+
+//WINDOWS PARAMETERS
+int		windowsop(t_var *p);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif
