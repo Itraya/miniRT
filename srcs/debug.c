@@ -89,10 +89,10 @@ void	print_cy(t_cy *fig)
 
 void	print_everything(t_var *p)
 {
-	print_a(p->struc[0]);
-	print_c(p->struc[1]);
-	print_l(p->struc[2]);
-	print_sp(p->struc[3]);
-	print_pl(p->struc[4]);
-	print_cy(p->struc[5]);
+	print_a(p->a);
+	print_c(p->c);
+	print_l(p->l);
+	print_sp(p->sp);
+	print_pl(p->pl);
+	print_cy(p->cy);
 }

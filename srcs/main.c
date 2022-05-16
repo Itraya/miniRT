@@ -262,7 +262,7 @@ int	ft_malloc_a(t_var *p, char **lines)
 			if (!ft_create_a(lines[i], &fig[len++]))
 				return (0);
 	fig[len].exist = 0;
-	p->struc[0] = fig;
+	p->a = fig;
 	return (1);
 }
 
@@ -287,7 +287,7 @@ int	ft_malloc_c(t_var *p, char **lines)
 			if (!ft_create_c(lines[i], &fig[len++]))
 				return (0);
 	fig[len].exist = 0;
-	p->struc[1] = fig;
+	p->c = fig;
 	return (1);
 }
 
@@ -312,7 +312,7 @@ int	ft_malloc_l(t_var *p, char **lines)
 			if (!ft_create_l(lines[i], &fig[len++]))
 				return (0);
 	fig[len].exist = 0;
-	p->struc[2] = fig;
+	p->l = fig;
 	return (1);
 }
 
@@ -337,7 +337,7 @@ int	ft_malloc_sp(t_var *p, char **lines)
 			if (!ft_create_sp(lines[i], &fig[len++]))
 				return (0);
 	fig[len].exist = 0;
-	p->struc[3] = fig;
+	p->sp = fig;
 	return (1);
 }
 
@@ -362,7 +362,7 @@ int	ft_malloc_pl(t_var *p, char **lines)
 			if (!ft_create_pl(lines[i], &fig[len++]))
 				return (0);
 	fig[len].exist = 0;
-	p->struc[4] = fig;
+	p->pl = fig;
 	return (1);
 }
 
@@ -387,13 +387,12 @@ int	ft_malloc_cy(t_var *p, char **lines)
 			if (!ft_create_cy(lines[i], &fig[len++]))
 				return (0);
 	fig[len].exist = 0;
-	p->struc[5] = fig;
+	p->cy = fig;
 	return (1);
 }
 
 int	ft_malloc_all(char **lines, t_var *p)
 {
-	p->struc = malloc(6 * sizeof(void *));
 	if (!ft_malloc_a(p, lines))
 		return (0);
 	if (!ft_malloc_c(p, lines))

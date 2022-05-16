@@ -22,12 +22,6 @@ typedef struct s_data
 	int				winlength;
 }					t_data;
 
-typedef struct s_var
-{
-	void	**struc;
-	t_data	*data;
-}				t_var;
-
 typedef struct s_a
 {
 	double			ratio;
@@ -76,6 +70,17 @@ typedef struct s_cy
 	unsigned char	rgb[3];
 	int				exist;
 }				t_cy;
+
+typedef struct s_var
+{
+	t_a		*a;
+	t_c		*c;
+	t_l		*l;
+	t_sp	*sp;
+	t_pl	*pl;
+	t_cy	*cy;
+	t_data	*data;
+}				t_var;
 
 //PRINT
 void	print_everything(t_var *p);

@@ -2,10 +2,10 @@
 
 void	free_struc(t_var *p)
 {
-	int	i;
-
-	i = 0;
-	while (i < 6)
-		free(p->struc[i++]);
-	free(p->struc);
+	free(p->a);
+	free(p->c);
+	free(p->l);
+	free(p->sp);
+	free(p->pl);
+	free(p->cy);
 }
