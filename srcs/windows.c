@@ -20,19 +20,11 @@ int	key_hook(int keycode, t_data *data)
 	return (0);
 }
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (int)(y * data->line_length + x
-			* (data->bits_per_pixel * 0.125));
-	*(unsigned int *)dst = color;
-}
-
 int	windowsop(t_var *p)
 {
 	t_data	data;
 
+	p->data = &data;
 	data.mlx = mlx_init();
 	vardef(&data);
 	data.win = mlx_new_window(data.mlx, data.winwidth, data.winlength, "baka");

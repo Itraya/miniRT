@@ -9,6 +9,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+//Window struct
 typedef struct s_data
 {
 	void			*mlx;
@@ -22,6 +23,7 @@ typedef struct s_data
 	int				winlength;
 }					t_data;
 
+//Ambient lightning:
 typedef struct s_a
 {
 	double			ratio;
@@ -29,6 +31,7 @@ typedef struct s_a
 	int				exist;
 }				t_a;
 
+//Camera:
 typedef struct s_c
 {
 	double	xyz[3];
@@ -37,6 +40,7 @@ typedef struct s_c
 	int		exist;
 }				t_c;
 
+//Light:
 typedef struct s_l
 {
 	double			xyz[3];
@@ -45,6 +49,7 @@ typedef struct s_l
 	int				exist;
 }				t_l;
 
+//Sphere:
 typedef struct s_sp
 {
 	double			xyz[3];
@@ -53,6 +58,7 @@ typedef struct s_sp
 	int				exist;
 }				t_sp;
 
+//Plane:
 typedef struct s_pl
 {
 	double			xyz[3];
@@ -61,6 +67,7 @@ typedef struct s_pl
 	int				exist;
 }				t_pl;
 
+//Cylinder:
 typedef struct s_cy
 {
 	double			xyz[3];
@@ -71,6 +78,7 @@ typedef struct s_cy
 	int				exist;
 }				t_cy;
 
+//Main struct
 typedef struct s_var
 {
 	t_a		*a;
@@ -109,5 +117,5 @@ char	*get_next_line(int fd);
 //WINDOWS PARAMETERS
 int		windowsop(t_var *p);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-
+void	generator(t_var *p);
 #endif
