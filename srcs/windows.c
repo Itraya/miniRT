@@ -2,8 +2,11 @@
 
 void	vardef(t_data *data)
 {
+	double	aspect_ratio;
+
+	aspect_ratio = 16.0 / 9.0;
 	data->winwidth = 960;
-	data->winlength = 600 ;
+	data->winlength = data->winwidth / aspect_ratio;
 }
 
 int	closewin(t_data *data)
@@ -27,7 +30,7 @@ int	windowsop(t_var *p)
 	p->data = &data;
 	data.mlx = mlx_init();
 	vardef(&data);
-	data.win = mlx_new_window(data.mlx, data.winwidth, data.winlength, "baka");
+	data.win = mlx_new_window(data.mlx, data.winwidth, data.winlength, "UwU");
 	data.img = mlx_new_image(data.mlx, data.winwidth, data.winlength);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
 			&data.line_length, &data.endian);

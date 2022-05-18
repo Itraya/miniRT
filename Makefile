@@ -62,6 +62,7 @@ SOURCES	=	debug.c					\
 			main.c					\
 			windows.c				\
 			generator.c				\
+			vectors.c				\
 
 
 ##*********##
