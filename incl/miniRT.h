@@ -90,10 +90,8 @@ typedef struct s_vec
 //Rays
 typedef struct s_ray
 {
-	double	x;
-	double	y;
-	double	z;
-	double	length;
+	t_vec	origin;
+	t_vec	direction;
 }				t_ray;
 
 //Main struct

@@ -5,7 +5,7 @@ void	vardef(t_data *data)
 	double	aspect_ratio;
 
 	aspect_ratio = 16.0 / 9.0;
-	data->winwidth = 960;
+	data->winwidth = 1000;
 	data->winlength = data->winwidth / aspect_ratio;
 }
 

@@ -10,34 +10,48 @@ void	mypixelput(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	colortrgb(double t, double r, double g, double b)
+int	colortrgb(int t, int r, int g, int b)
 {
-	t *= 255.99;
-	r *= 255.99;
-	g *= 255.99;
-	b *= 255.99;
-	return ((int)t << 24 | (int)r << 16 | (int)g << 8 | (int)b);
-}
+	return (t << 24 | r << 16 | g << 8 | b);
+} 
 
-int	contactsp(t_sp *sphere, t_ray ray)
+int	contactsp(t_sp sphere, t_ray ray)
 {
-	double a = 1;
-	double b = 2 * vecdot() //video 42;20
+	double	a;
+	double	b;
+	double	c;
+	t_vec	sphereorigin;
+	double	delta;
+
+	sphereorigin.x = sphere.xyz[0];
+	sphereorigin.y = sphere.xyz[1];
+	sphereorigin.z = sphere.xyz[2];
+	a = 1;
+	b = 2 * vecdot(ray.direction, vecsub(ray.origin, sphereorigin));
+	c = vecnorm(vecsub(ray.origin, sphereorigin)) - sphere.height * sphere.height;
+	delta = b * b - 4 * a * c;
+	if (((-b + sqrt(delta)) / (2 * a)) > 0)
+		return (1);
+	return (0);
 }
 
 void	algo(t_var *p, int x, int y)
 {
-	t_ray	*ray;
+	t_ray	myray;
 
-	ray.x = (double)x;
-	ray.y = (double)y;
-	ray.z = 0;
-	if (p->sp[0].exist == 1)
+	myray.origin.x = p->c->xyz[0];
+	myray.origin.y = p->c->xyz[1];
+	myray.origin.z = p->c->xyz[2];
+	myray.direction.x = x - p->data->winwidth / 2;
+	myray.direction.y = y - p->data->winlength / 2;
+	myray.direction.z = -p->data->winlength / (2 * tan((p->c->fov * M_PI / 180) / 2));
+	normalize(myray.direction);
+	if (contactsp(p->sp[0], myray) == 1)
 	{
-		if (x - p->data->winwidth / 2 )
+		mypixelput(p->data, x, y, colortrgb(0, 255, 0, 0));
 	}
-	mypixelput(p->data, x, y, colortrgb(0, (double)x / p->data->winwidth, (double)y / p->data->winlength, 0.2));
-
+	else
+		mypixelput(p->data, x, y, colortrgb(0, 255, 255, 255));
 }
 
 void	generator(t_var *p)
