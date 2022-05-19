@@ -30,6 +30,8 @@ int	contactsp(t_sp sphere, t_ray ray)
 	b = 2 * vecdot(ray.direction, vecsub(ray.origin, sphereorigin));
 	c = vecnorm(vecsub(ray.origin, sphereorigin)) - sphere.height * sphere.height;
 	delta = b * b - 4 * a * c;
+	if (delta < 0)
+		return (0);
 	if (((-b + sqrt(delta)) / (2 * a)) > 0)
 		return (1);
 	return (0);
