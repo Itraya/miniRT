@@ -65,7 +65,7 @@ double	vecdot(t_vec v1, t_vec v2)
 double	vecnorm(t_vec v1)
 {
 	return (v1.x * v1.x + v1.y * v1.y + v1.z * v1.z);
-}
+} 
 
 void	normalize(t_vec v1)
 {
@@ -75,4 +75,19 @@ void	normalize(t_vec v1)
 	v1.x /= norm;
 	v1.y /= norm;
 	v1.z /= norm;
+}
+
+t_vec	vecunit(t_vec v1, int div)
+{
+	return (vecdiv(v1, div));
+}
+
+double	veclen(t_vec v1)
+{
+	return (sqrt(vecnorm(v1)));
+}
+
+t_vec	vecat(t_ray ray, double t)
+{
+	return (vecadd(ray.origin, vecmult(ray.direction, t)));
 }

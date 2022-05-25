@@ -135,6 +135,7 @@ char	*get_next_line(int fd);
 int		windowsop(t_var *p);
 void	mypixelput(t_data *data, int x, int y, int color);
 void	generator(t_var *p);
+int		closewin(t_data *data);
 
 //VECTORS UTILS
 t_vec	vecadd(t_vec v1, t_vec v2);
@@ -146,5 +147,8 @@ t_vec	newvec(double x, double y, double z);
 double	vecdot(t_vec v1, t_vec v2);
 double	vecnorm(t_vec v1);
 void	normalize(t_vec v1);
+t_vec	vecunit(t_vec v1, int div);
+double	veclen(t_vec v1);
+t_vec	vecat(t_ray ray, double t);
 
 #endif

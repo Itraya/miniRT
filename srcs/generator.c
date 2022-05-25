@@ -7,70 +7,88 @@ void	mypixelput(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (int)(y * data->line_length + x
 			* (data->bits_per_pixel * 0.125));
-	*(unsigned int *)dst = color;
+	if (y < data->winwidth && x < data->winlength)
+	{
+		//printf("%d %d - ",x, data->winlength);
+		//printf("%d %d\n",y, data->winwidth);
+		*(unsigned int *)dst = color;
+	}
+}
+
+double	contactsp(t_sp sphere, t_ray ray)
+{
+	double	a;
+	double	b;
+	double	c;
+	t_vec	sphereorig;
+	double	delta;
+
+	sphereorig = newvec(sphere.xyz[0], sphere.xyz[1], sphere.xyz[2]);
+	a = vecdot(ray.direction, ray.direction);
+	b = 2 * vecdot(vecsub(ray.origin, sphereorig), ray.direction);
+	c = vecdot(vecsub(ray.origin, sphereorig), vecsub(ray.origin, sphereorig))
+		- sphere.height * sphere.height;
+	delta = b * b - 4 * a * c;
+	if (delta < 0)
+		return (-1);
+	else
+		return ((-b - sqrt(delta)) / (2 * a));
 }
 
 int	colortrgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
-} 
+}
 
-int	contactsp(t_sp sphere, t_ray ray)
+double	raycolor(t_ray myray, t_var *p)
 {
-	double	a;
-	double	b;
-	double	c;
-	t_vec	sphereorigin;
-	double	delta;
+	double	t;
+	double	n;
+	t_vec	sphereorig;
 
-	sphereorigin.x = sphere.xyz[0];
-	sphereorigin.y = sphere.xyz[1];
-	sphereorigin.z = sphere.xyz[2];
-	a = 1;
-	b = 2 * vecdot(ray.direction, vecsub(ray.origin, sphereorigin));
-	c = vecnorm(vecsub(ray.origin, sphereorigin)) - sphere.height * sphere.height;
-	delta = b * b - 4 * a * c;
-	if (delta < 0)
-		return (0);
-	if (((-b + sqrt(delta)) / (2 * a)) > 0)
-		return (1);
-	return (0);
+	sphereorig = newvec(p->sp[0].xyz[0], p->sp[0].xyz[1], p->sp[0].xyz[2]);
+	t = contactsp(p->sp[0], myray);
+	if (t > 0)
+	{
+		lenvec = veclen(vecsub(vecat(myray, t), sphereorig));
+	}
 }
 
 void	algo(t_var *p, int x, int y)
 {
 	t_ray	myray;
 
-	myray.origin.x = p->c->xyz[0];
-	myray.origin.y = p->c->xyz[1];
-	myray.origin.z = p->c->xyz[2];
-	myray.direction.x = x - p->data->winwidth / 2;
-	myray.direction.y = y - p->data->winlength / 2;
-	myray.direction.z = -p->data->winlength / (2 * tan((p->c->fov * M_PI / 180) / 2));
+	myray.origin = newvec(p->c->xyz[0], p->c->xyz[1], p->c->xyz[2]);
+	myray.direction = newvec(y - p->data->winwidth / 2, x - p->data->winlength
+			/ 2, -p->data->winwidth / (2 * tan((p->c->fov * M_PI / 180) / 2)));
 	normalize(myray.direction);
-	if (contactsp(p->sp[0], myray) == 1)
-	{
-		mypixelput(p->data, x, y, colortrgb(0, 255, 0, 0));
-	}
-	else
-		mypixelput(p->data, x, y, colortrgb(0, 255, 255, 255));
+	//if (contactsp(p->sp[0], myray) > 0)
+	//{
+	//	mypixelput(p->data, x, y, colortrgb(0, 250, 0, 0));
+	//}
+	//else
+	//{
+	//	mypixelput(p->data, x, y, colortrgb(0, 255, 255, 255));
+	//}
+	mypixelput(p->data, x, y, raycolor(myray, p));
 }
-
+//i = H = x = len
+//j = W = y = wid
 void	generator(t_var *p)
 {
 	int	x;
 	int	y;
 
-	y = 0;
-	while (y < p->data->winlength)
+	x = 0;
+	while (x < p->data->winlength)
 	{
-		x = 0;
-		while (x < p->data->winwidth)
+		y = 0;
+		while (y < p->data->winwidth)
 		{
 			algo(p, x, y);
-			x++;
+			y++;
 		}
-		y++;
+		x++;
 	}
 	mlx_put_image_to_window(p->data->mlx, p->data->win, p->data->img, 0, 0);
 }
