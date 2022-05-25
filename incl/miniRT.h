@@ -147,7 +147,7 @@ t_vec	newvec(double x, double y, double z);
 double	vecdot(t_vec v1, t_vec v2);
 double	vecnorm(t_vec v1);
 void	normalize(t_vec v1);
-t_vec	vecunit(t_vec v1, int div);
+t_vec	vecunit(t_vec v1);
 double	veclen(t_vec v1);
 t_vec	vecat(t_ray ray, double t);
 

@@ -44,9 +44,7 @@ t_vec	vecdiv(t_vec v1, double mult)
 {
 	t_vec	new;
 
-	new.x = v1.x / mult;
-	new.y = v1.y / mult;
-	new.z = v1.z / mult;
+	new = vecmult(v1, 1 / mult);
 	return (new);
 }
 
@@ -77,9 +75,9 @@ void	normalize(t_vec v1)
 	v1.z /= norm;
 }
 
-t_vec	vecunit(t_vec v1, int div)
+t_vec	vecunit(t_vec v1)
 {
-	return (vecdiv(v1, div));
+	return (vecdiv(v1, veclen(v1)));
 }
 
 double	veclen(t_vec v1)

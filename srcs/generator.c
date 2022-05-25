@@ -20,13 +20,11 @@ double	contactsp(t_sp sphere, t_ray ray)
 	double	a;
 	double	b;
 	double	c;
-	t_vec	sphereorig;
 	double	delta;
 
-	sphereorig = newvec(sphere.xyz[0], sphere.xyz[1], sphere.xyz[2]);
 	a = vecdot(ray.direction, ray.direction);
-	b = 2 * vecdot(vecsub(ray.origin, sphereorig), ray.direction);
-	c = vecdot(vecsub(ray.origin, sphereorig), vecsub(ray.origin, sphereorig))
+	b = 2 * vecdot(vecsub(ray.origin, sphere.xyz), ray.direction);
+	c = vecdot(vecsub(ray.origin, sphere.xyz), vecsub(ray.origin, sphere.xyz))
 		- sphere.height * sphere.height;
 	delta = b * b - 4 * a * c;
 	if (delta < 0)
@@ -35,41 +33,51 @@ double	contactsp(t_sp sphere, t_ray ray)
 		return ((-b - sqrt(delta)) / (2 * a));
 }
 
-int	colortrgb(int t, int r, int g, int b)
+int	colortrgb(double t, double r, double g, double b)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
+	t *= 255.99;
+	r *= 255.99;
+	g *= 255.99;
+	b *= 255.99;
+	return ((int)t << 24 | (int)r << 16 | (int)g << 8 | (int)b);
+}
+
+int	colorrgb(double r, double g, double b)
+{
+	int	t;
+
+	t = 0;
+	r *= 255.99;
+	g *= 255.99;
+	b *= 255.99;
+	return (t << 24 | (int)r << 16 | (int)g << 8 | (int)b);
 }
 
 double	raycolor(t_ray myray, t_var *p)
 {
 	double	t;
-	double	n;
-	t_vec	sphereorig;
+	t_vec	n;
+	t_vec	unitdir;
 
-	sphereorig = newvec(p->sp[0].xyz[0], p->sp[0].xyz[1], p->sp[0].xyz[2]);
 	t = contactsp(p->sp[0], myray);
 	if (t > 0)
 	{
-		lenvec = veclen(vecsub(vecat(myray, t), sphereorig));
+		n = vecunit(vecsub(vecat(myray, t), p->sp[0].xyz));
+		return (0.5 * colorrgb(n.x + 1, n.y + 1, n.z + 1));
 	}
+	unitdir = vecunit(myray.direction);
+	t = 0.5 * unitdir.y + 1;
+	return ((1 - t) * colorrgb(1.0, 1.0, 1.0) + t * colorrgb(0.5, 0.7, 1.0));
 }
 
 void	algo(t_var *p, int x, int y)
 {
 	t_ray	myray;
 
-	myray.origin = newvec(p->c->xyz[0], p->c->xyz[1], p->c->xyz[2]);
+	myray.origin = p->c->xyz;
 	myray.direction = newvec(y - p->data->winwidth / 2, x - p->data->winlength
 			/ 2, -p->data->winwidth / (2 * tan((p->c->fov * M_PI / 180) / 2)));
 	normalize(myray.direction);
-	//if (contactsp(p->sp[0], myray) > 0)
-	//{
-	//	mypixelput(p->data, x, y, colortrgb(0, 250, 0, 0));
-	//}
-	//else
-	//{
-	//	mypixelput(p->data, x, y, colortrgb(0, 255, 255, 255));
-	//}
 	mypixelput(p->data, x, y, raycolor(myray, p));
 }
 //i = H = x = len
