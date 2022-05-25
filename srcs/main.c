@@ -109,16 +109,16 @@ double	ft_atof(char *s)
 	return (ft_atoi(s) + ft_atod(s));
 }
 
-int	get_triple_do(char *s, double t[3])
+int	get_triple_do(char *s, t_vec *t)
 {
 	char	**split;
 
 	split = ft_split(s, ',');
 	if (!split)
 		return (0);
-	t[0] = ft_atof(split[0]);
-	t[1] = ft_atof(split[1]);
-	t[2] = ft_atof(split[2]);
+	t->x = ft_atof(split[0]);
+	t->y = ft_atof(split[1]);
+	t->z = ft_atof(split[2]);
 	free_split(split);
 	return (1);
 }
@@ -160,9 +160,9 @@ int	ft_create_c(char *line, t_c *fig)
 	split = ft_split2(line, ' ', '	');
 	if (!split)
 		return (0);
-	if (!get_triple_do(split[1], fig->xyz))
+	if (!get_triple_do(split[1], &fig->xyz))
 		return (free_split(split));
-	if (!get_triple_do(split[2], fig->way))
+	if (!get_triple_do(split[2], &fig->way))
 		return (free_split(split));
 	fig->fov = ft_atoi(split[3]);
 	free_split(split);
@@ -177,7 +177,7 @@ int	ft_create_l(char *line, t_l *fig)
 	split = ft_split2(line, ' ', '	');
 	if (!split)
 		return (0);
-	if (!get_triple_do(split[1], fig->xyz))
+	if (!get_triple_do(split[1], &fig->xyz))
 		return (free_split(split));
 	fig->ratio = ft_atof(split[2]);
 	if (!get_triple_un(split[3], fig->rgb))
@@ -194,7 +194,7 @@ int	ft_create_sp(char *line, t_sp *fig)
 	split = ft_split2(line, ' ', '	');
 	if (!split)
 		return (0);
-	if (!get_triple_do(split[1], fig->xyz))
+	if (!get_triple_do(split[1], &fig->xyz))
 		return (free_split(split));
 	fig->height = ft_atof(split[2]);
 	if (!get_triple_un(split[3], fig->rgb))
@@ -211,9 +211,9 @@ int	ft_create_pl(char *line, t_pl *fig)
 	split = ft_split2(line, ' ', '	');
 	if (!split)
 		return (0);
-	if (!get_triple_do(split[1], fig->xyz))
+	if (!get_triple_do(split[1], &fig->xyz))
 		return (free_split(split));
-	if (!get_triple_do(split[2], fig->way))
+	if (!get_triple_do(split[2], &fig->way))
 		return (free_split(split));
 	if (!get_triple_un(split[3], fig->rgb))
 		return (free_split(split));
@@ -229,9 +229,9 @@ int	ft_create_cy(char *line, t_cy *fig)
 	split = ft_split2(line, ' ', '	');
 	if (!split)
 		return (0);
-	if (!get_triple_do(split[1], fig->xyz))
+	if (!get_triple_do(split[1], &fig->xyz))
 		return (free_split(split));
-	if (!get_triple_do(split[2], fig->way))
+	if (!get_triple_do(split[2], &fig->way))
 		return (free_split(split));
 	fig->width = ft_atof(split[3]);
 	fig->height = ft_atof(split[4]);
@@ -536,15 +536,15 @@ int	check_a(char **lines)
 
 int	check_c(char **lines)
 {
-	double	t[3];
+	t_vec	t;
 
 	if (!ft_is_trido(lines[1]))
 		return (0);
 	if (!ft_is_trido(lines[2]))
 		return (0);
-	get_triple_do(lines[2], t);
-	if (t[0] < -1.0 || t[0] > 1.0 || t[1] < -1.0 || \
-	t[1] > 1.0 || t[2] < -1.0 || t[2] > 1.0)
+	get_triple_do(lines[2], &t);
+	if (t.x < -1.0 || t.x > 1.0 || t.y < -1.0 || \
+	t.y > 1.0 || t.z < -1.0 || t.z > 1.0)
 		return (0);
 	if (!ft_is_int(lines[3]) || \
 	ft_atoi(lines[3]) < 0 || ft_atoi(lines[3]) > 180)
@@ -583,15 +583,15 @@ int	check_sp(char **lines)
 
 int	check_pl(char **lines)
 {
-	double	t[3];
+	t_vec	t;
 
 	if (!ft_is_trido(lines[1]))
 		return (0);
 	if (!ft_is_trido(lines[2]))
 		return (0);
-	get_triple_do(lines[2], t);
-	if (t[0] < -1.0 || t[0] > 1.0 || t[1] < -1.0 || t[1] > 1.0 \
-	|| t[2] < -1.0 || t[2] > 1.0)
+	get_triple_do(lines[2], &t);
+	if (t.x < -1.0 || t.x > 1.0 || t.y < -1.0 || t.y > 1.0 \
+	|| t.z < -1.0 || t.z > 1.0)
 		return (0);
 	if (!ft_is_triint(lines[3]))
 		return (0);
@@ -602,15 +602,15 @@ int	check_pl(char **lines)
 
 int	check_cy(char **lines)
 {
-	double	t[3];
+	t_vec	t;
 
 	if (!ft_is_trido(lines[1]))
 		return (0);
 	if (!ft_is_trido(lines[2]))
 		return (0);
-	get_triple_do(lines[2], t);
-	if (t[0] < -1.0 || t[0] > 1.0 || t[1] < -1.0 || t[1] > 1.0 \
-	|| t[2] < -1.0 || t[2] > 1.0)
+	get_triple_do(lines[2], &t);
+	if (t.x < -1.0 || t.x > 1.0 || t.y < -1.0 || t.y > 1.0 \
+	|| t.z < -1.0 || t.z > 1.0)
 		return (0);
 	if (!ft_is_do(lines[3]) || ft_atof(lines[3]) <= 0)
 		return (0);
@@ -725,6 +725,6 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	print_everything(&p);
-	windowsop(&p);
+	// windowsop(&p);
 	free_struc(&p);
 }

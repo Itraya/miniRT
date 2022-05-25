@@ -10,6 +10,14 @@
 # include <unistd.h>
 # include <math.h>
 
+//Vecs
+typedef struct s_vec
+{
+	double	x;
+	double	y;
+	double	z;
+}				t_vec;
+
 //Window struct
 typedef struct s_data
 {
@@ -35,8 +43,8 @@ typedef struct s_a
 //Camera:
 typedef struct s_c
 {
-	double	xyz[3];
-	double	way[3];
+	t_vec	xyz;
+	t_vec	way;
 	int		fov;
 	int		exist;
 }				t_c;
@@ -44,7 +52,7 @@ typedef struct s_c
 //Light:
 typedef struct s_l
 {
-	double			xyz[3];
+	t_vec			xyz;
 	double			ratio;
 	unsigned char	rgb[3];
 	int				exist;
@@ -53,7 +61,7 @@ typedef struct s_l
 //Sphere:
 typedef struct s_sp
 {
-	double			xyz[3];
+	t_vec			xyz;
 	double			height;
 	unsigned char	rgb[3];
 	int				exist;
@@ -62,8 +70,8 @@ typedef struct s_sp
 //Plane:
 typedef struct s_pl
 {
-	double			xyz[3];
-	double			way[3];
+	t_vec			xyz;
+	t_vec			way;
 	unsigned char	rgb[3];
 	int				exist;
 }				t_pl;
@@ -71,21 +79,13 @@ typedef struct s_pl
 //Cylinder:
 typedef struct s_cy
 {
-	double			xyz[3];
-	double			way[3];
+	t_vec			xyz;
+	t_vec			way;
 	double			height;
 	double			width;
 	unsigned char	rgb[3];
 	int				exist;
 }				t_cy;
-
-//Vecs
-typedef struct s_vec
-{
-	double	x;
-	double	y;
-	double	z;
-}				t_vec;
 
 //Rays
 typedef struct s_ray

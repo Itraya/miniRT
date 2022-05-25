@@ -20,8 +20,8 @@ void	print_c(t_c *fig)
 	i = -1;
 	while (fig[++i].exist)
 	{
-		dprintf(2, "c[%d]->xyz = %f,%f,%f\n", i, fig[i].xyz[0], fig[i].xyz[1], fig[i].xyz[2]);
-		dprintf(2, "c[%d]->way = %f,%f,%f\n", i, fig[i].way[0], fig[i].way[1], fig[i].way[2]);
+		dprintf(2, "c[%d]->xyz = %f,%f,%f\n", i, fig[i].xyz.x, fig[i].xyz.y, fig[i].xyz.z);
+		dprintf(2, "c[%d]->way = %f,%f,%f\n", i, fig[i].xyz.x, fig[i].xyz.y, fig[i].xyz.z);
 		dprintf(2, "c[%d]->fov = %d\n", i, fig[i].fov);
 		dprintf(2, "\n");
 	}
@@ -34,7 +34,7 @@ void	print_l(t_l *fig)
 	i = -1;
 	while (fig[++i].exist)
 	{
-		dprintf(2, "l[%d]->xyz = %f,%f,%f\n", i, fig[i].xyz[0], fig[i].xyz[1], fig[i].xyz[2]);
+		dprintf(2, "l[%d]->xyz = %f,%f,%f\n", i, fig[i].xyz.x, fig[i].xyz.y, fig[i].xyz.z);
 		dprintf(2, "l[%d]->ratio = %f\n", i, fig[i].ratio);
 		dprintf(2, "l[%d]->rgb = %d,%d,%d\n", i, fig[i].rgb[0], fig[i].rgb[1], fig[i].rgb[2]);
 
@@ -49,7 +49,7 @@ void	print_sp(t_sp *fig)
 	i = -1;
 	while (fig[++i].exist)
 	{
-		dprintf(2, "sp[%d]->xyz = %f,%f,%f\n", i, fig[i].xyz[0], fig[i].xyz[1], fig[i].xyz[2]);
+		dprintf(2, "sp[%d]->xyz = %f,%f,%f\n", i, fig[i].xyz.x, fig[i].xyz.y, fig[i].xyz.z);
 		dprintf(2, "sp[%d]->height = %f\n", i, fig[i].height);
 		dprintf(2, "sp[%d]->rgb = %d,%d,%d\n", i, fig[i].rgb[0], fig[i].rgb[1], fig[i].rgb[2]);
 		dprintf(2, "\n");
@@ -63,8 +63,8 @@ void	print_pl(t_pl *fig)
 	i = -1;
 	while (fig[++i].exist)
 	{
-		dprintf(2, "pl[%d]->xyz = %f,%f,%f\n", i, fig[i].xyz[0], fig[i].xyz[1], fig[i].xyz[2]);
-		dprintf(2, "pl[%d]->way = %f,%f,%f\n", i, fig[i].way[0], fig[i].way[1], fig[i].way[2]);
+		dprintf(2, "pl[%d]->xyz = %f,%f,%f\n", i, fig[i].xyz.x, fig[i].xyz.y, fig[i].xyz.z);
+		dprintf(2, "pl[%d]->way = %f,%f,%f\n", i, fig[i].xyz.x, fig[i].xyz.y, fig[i].xyz.z);
 		dprintf(2, "pl[%d]->rgb = %d,%d,%d\n", i, fig[i].rgb[0], fig[i].rgb[1], fig[i].rgb[2]);
 		dprintf(2, "\n");
 	}
@@ -77,8 +77,8 @@ void	print_cy(t_cy *fig)
 	i = -1;
 	while (fig[++i].exist)
 	{
-		dprintf(2, "cy[%d]->xyz = %f,%f,%f\n", i, fig[i].xyz[0], fig[i].xyz[1], fig[i].xyz[2]);
-		dprintf(2, "cy[%d]->way = %f,%f,%f\n", i, fig[i].way[0], fig[i].way[1], fig[i].way[2]);
+		dprintf(2, "cy[%d]->xyz = %f,%f,%f\n", i, fig[i].xyz.x, fig[i].xyz.y, fig[i].xyz.z);
+		dprintf(2, "cy[%d]->way = %f,%f,%f\n", i, fig[i].xyz.x, fig[i].xyz.y, fig[i].xyz.z);
 		dprintf(2, "cy[%d]->width = %f\n", i, fig[i].width);
 		dprintf(2, "cy[%d]->height = %f\n", i, fig[i].height);
 		dprintf(2, "cy[%d]->rgb = %d,%d,%d\n", i, fig[i].rgb[0], fig[i].rgb[1], fig[i].rgb[2]);
