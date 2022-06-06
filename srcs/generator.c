@@ -15,73 +15,189 @@ void	mypixelput(t_data *data, int x, int y, int color)
 	}
 }
 
-double	contactsp(t_sp sphere, t_ray ray)
+//int	setfacenormal(t_ray ray, t_vec outwardnormal, t_var *p)
+//{
+//	if (vecdot(ray.direction, outwardnormal) < 0)
+//		p->hitrec.frontface = 1;
+//	else
+//		p->hitrec.frontface = 0;
+//	if (p->hitrec.frontface == 1)
+//		p->hitrec.normal = outwardnormal;
+//	else
+//		p->hitrec.normal = vecmult(outwardnormal, -1);
+//}
+
+/*
+// a = vecdot(ray.direction, ray.direction);
+// b = 2 * vecdot(vecsub(ray.origin, sphere.xyz), ray.direction);
+// c = vecdot(vecsub(ray.origin, sphere.xyz), vecsub(ray.origin, sphere.xyz))
+// 	- sphere.height * sphere.height;
+// delta = b * b - 4 * a * c;
+//i used a simplified version to be faster
+//po intersection
+//no normal
+*/
+
+double	contactsp(t_sp sphere, t_ray ray, t_var *p)
 {
 	double	a;
 	double	b;
 	double	c;
 	double	delta;
+	double	root;
 
-	a = vecdot(ray.direction, ray.direction);
-	b = 2 * vecdot(vecsub(ray.origin, sphere.xyz), ray.direction);
-	c = vecdot(vecsub(ray.origin, sphere.xyz), vecsub(ray.origin, sphere.xyz))
-		- sphere.height * sphere.height;
-	delta = b * b - 4 * a * c;
+	a = vecnorm(ray.direction);
+	b = vecdot(vecsub(ray.origin, sphere.xyz), ray.direction);
+	c = vecnorm(vecsub(ray.origin, sphere.xyz)) - sphere.height * sphere.height;
+	delta = b * b - a * c;
 	if (delta < 0)
-		return (-1);
+		return (0);
+	if ((-b + sqrt(delta)) / a < 0)
+		return (0);
+	if ((-b - sqrt(delta)) / a > 0)
+		root = (-b - sqrt(delta)) / a;
 	else
-		return ((-b - sqrt(delta)) / (2 * a));
+		root = (-b + sqrt(delta)) / a;
+	p->data->po = vecadd(ray.origin, vecmult(ray.direction, root));
+	p->data->no = getnormalized(vecsub(p->data->po, sphere.xyz));
+	return (root);
 }
 
-int	colortrgb(double t, double r, double g, double b)
+//int	colortrgb(double t, double r, double g, double b)
+//
+//	t *= 255.99;
+//	r *= 255.99;
+//	g *= 255.99;
+//	b *= 255.99;
+//	return ((int)t << 24 | (int)r << 16 | (int)g << 8 | (int)b);
+//
+
+int	colortrgb(int t, int r, int g, int b)
 {
-	t *= 255.99;
-	r *= 255.99;
-	g *= 255.99;
-	b *= 255.99;
-	return ((int)t << 24 | (int)r << 16 | (int)g << 8 | (int)b);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int	colorrgb(double r, double g, double b)
+int	colorrgb(int r, int g, int b)
 {
 	int	t;
 
 	t = 0;
-	r *= 255.99;
-	g *= 255.99;
-	b *= 255.99;
-	return (t << 24 | (int)r << 16 | (int)g << 8 | (int)b);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-double	raycolor(t_ray myray, t_var *p)
+double	goodlux(double num)
 {
-	double	t;
-	t_vec	n;
-	t_vec	unitdir;
+	if (num < 0)
+		return (0);
+	if (num > 255)
+		return (255);
+	return (num);
+}
 
-	t = contactsp(p->sp[0], myray);
-	if (t > 0)
+double	intershadow(t_ray myray, t_var *p)
+{
+	t_ray	rebund;
+	int		i;
+	double	dist;
+	double	min_t;
+
+	rebund.origin = vecadd(p->data->smpo, vecmult(p->data->smno, 0.01));
+	rebund.direction = getnormalized(vecsub(p->l->xyz, p->data->smpo));
+	i = 0;
+	min_t = 99999999999999;
+	while (p->sp[i].exist)
 	{
-		n = vecunit(vecsub(vecat(myray, t), p->sp[0].xyz));
-		return (0.5 * colorrgb(n.x + 1, n.y + 1, n.z + 1));
+		dist = contactsp(p->sp[i], rebund, p);
+		if (dist && dist < min_t)
+		{
+			min_t = dist;
+			p->data->shadowno = p->data->no;
+			p->data->shadowpo = p->data->po;
+		}
+		i++;
 	}
-	unitdir = vecunit(myray.direction);
-	t = 0.5 * unitdir.y + 1;
-	return ((1 - t) * colorrgb(1.0, 1.0, 1.0) + t * colorrgb(0.5, 0.7, 1.0));
+	if (min_t * min_t > vecnorm(vecsub(p->l->xyz, p->data->shadowpo)))
+		return (0.9);
+	return (0);
+}
+
+double	returnluxa(t_vec lux, int csp, t_var *p)
+{
+	return (colorrgb(goodlux(lux.x + goodlux(p->a->rgb[0] * p->a->ratio \
+	* p->sp[csp].rgb[0] / 255)), \
+					goodlux(lux.y + goodlux (p->a->rgb[1] * p->a->ratio \
+	* p->sp[csp].rgb[1] / 255)), \
+					goodlux(lux.z + goodlux(p->a->rgb[2] * p->a->ratio \
+	* p->sp[csp].rgb[2] / 255))));
+}
+
+double	raycolor(t_ray myray, double min_t, t_var *p, int csp)
+{
+	double	dist;
+	t_vec	lux;
+
+	lux = newvec(p->sp[csp].rgb[0], p->sp[csp].rgb[1], p->sp[csp].rgb[2]);
+	p->data->depthmax--;
+	if (min_t != 99999999999999)
+	{
+		lux = vecmult(lux, intershadow(myray, p));
+		lux = vecmult(lux, p->l->ratio * 50000 * goodlux(vecdot(\
+		getnormalized(vecsub(p->l->xyz, p->data->smpo)), p->data->smno) \
+		/ vecnorm(vecsub(p->l->xyz, p->data->smpo))));
+		return (returnluxa(lux, csp, p));
+	}
+	return (colorrgb(0, 0, 0));
+}
+
+double	inter(t_ray myray, t_var *p)
+{
+	int		i;
+	int		colorsp;
+	double	min_t;
+	double	dist;
+
+	i = 0;
+	min_t = 99999999999999;
+	while (p->sp[i].exist)
+	{
+		dist = contactsp(p->sp[i], myray, p);
+		if (dist && dist < min_t)
+		{
+			min_t = dist;
+			colorsp = i;
+			p->data->smno = p->data->no;
+			p->data->smpo = p->data->po;
+		}
+		i++;
+	}
+	return (raycolor(myray, min_t, p, colorsp));
 }
 
 void	algo(t_var *p, int x, int y)
 {
 	t_ray	myray;
+	int		i;
+	double	color;
 
 	myray.origin = p->c->xyz;
-	myray.direction = newvec(y - p->data->winwidth / 2, x - p->data->winlength
+	myray.direction = newvec(x - p->data->winwidth / 2, y - p->data->winlength
 			/ 2, -p->data->winwidth / (2 * tan((p->c->fov * M_PI / 180) / 2)));
 	normalize(myray.direction);
-	mypixelput(p->data, x, y, raycolor(myray, p));
+	i = 0;
+	color = 0;
+	while (i < p->data->sampleppix)
+	{
+		p->data->depthmax = 50;
+		color += inter(myray, p);
+		i++;
+	}
+	mypixelput(p->data, p->data->winwidth - x, y, color / p->data->sampleppix);
+	//essayer de changer le sens soon
 }
+
 //i = H = x = len
 //j = W = y = wid
+
 void	generator(t_var *p)
 {
 	int	x;

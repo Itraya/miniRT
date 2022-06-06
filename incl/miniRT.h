@@ -30,6 +30,14 @@ typedef struct s_data
 	int				endian;
 	int				winwidth;
 	int				winlength;
+	int				sampleppix;
+	int				depthmax;
+	t_vec			po;
+	t_vec			smpo;
+	t_vec			no;
+	t_vec			smno;
+	t_vec			shadowpo;
+	t_vec			shadowno;
 }					t_data;
 
 //Ambient lightning:
@@ -87,12 +95,22 @@ typedef struct s_cy
 	int				exist;
 }				t_cy;
 
+
 //Rays
 typedef struct s_ray
 {
 	t_vec	origin;
 	t_vec	direction;
 }				t_ray;
+
+////hitrecord
+//typedef struct s_hitrc
+//{
+//	t_vec	p;
+//	t_vec	normal;
+//	double	t;
+//	int		frontface;
+//}				t_hitrc;
 
 //Main struct
 typedef struct s_var
@@ -105,6 +123,8 @@ typedef struct s_var
 	t_cy	*cy;
 	t_data	*data;
 	t_vec	*vec;
+	double	t_min;
+	double	t_max;
 }				t_var;
 
 //PRINT
@@ -150,5 +170,7 @@ void	normalize(t_vec v1);
 t_vec	vecunit(t_vec v1);
 double	veclen(t_vec v1);
 t_vec	vecat(t_ray ray, double t);
+t_vec	getnorm(t_vec v1);
+t_vec	getnormalized(t_vec v1);
 
 #endif

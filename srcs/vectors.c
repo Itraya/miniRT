@@ -10,16 +10,6 @@ t_vec	vecadd(t_vec v1, t_vec v2)
 	return (new);
 }
 
-t_vec	vecmult(t_vec v1, double mult)
-{
-	t_vec	new;
-
-	new.x = v1.x * mult;
-	new.y = v1.y * mult;
-	new.z = v1.z * mult;
-	return (new);
-}
-
 t_vec	newvec(double x, double y, double z)
 {
 	t_vec	new;
@@ -40,6 +30,16 @@ t_vec	vecsub(t_vec v1, t_vec v2)
 	return (new);
 }
 
+t_vec	vecmult(t_vec v1, double mult)
+{
+	t_vec	new;
+
+	new.x = v1.x * mult;
+	new.y = v1.y * mult;
+	new.z = v1.z * mult;
+	return (new);
+}
+
 t_vec	vecdiv(t_vec v1, double mult)
 {
 	t_vec	new;
@@ -47,6 +47,16 @@ t_vec	vecdiv(t_vec v1, double mult)
 	new = vecmult(v1, 1 / mult);
 	return (new);
 }
+
+//t_vec	vecdiv(t_vec v1, double mult)
+//{
+//	t_vec	new;
+//
+//	new.x = v1.x / mult;
+//	new.y = v1.y / mult;
+//	new.z = v1.z / mult;
+//	return (new);
+//}
 
 t_vec	veccross(t_vec v1, t_vec v2)
 {
@@ -60,10 +70,18 @@ double	vecdot(t_vec v1, t_vec v2)
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }
 
-double	vecnorm(t_vec v1)
+t_vec	getnormalized(t_vec v1)
 {
-	return (v1.x * v1.x + v1.y * v1.y + v1.z * v1.z);
-} 
+	double	norm;
+	t_vec	new;
+
+	norm = sqrt(vecnorm(v1));
+	new.x = v1.x / norm;
+	new.y = v1.y / norm;
+	new.z = v1.z / norm;
+
+	return (new);
+}
 
 void	normalize(t_vec v1)
 {
@@ -83,6 +101,11 @@ t_vec	vecunit(t_vec v1)
 double	veclen(t_vec v1)
 {
 	return (sqrt(vecnorm(v1)));
+}
+
+double	vecnorm(t_vec v1)
+{
+	return (v1.x * v1.x + v1.y * v1.y + v1.z * v1.z);
 }
 
 t_vec	vecat(t_ray ray, double t)
