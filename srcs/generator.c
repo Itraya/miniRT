@@ -63,15 +63,6 @@ double	contactsp(t_sp sphere, t_ray ray, t_var *p)
 	return (root);
 }
 
-//int	colortrgb(double t, double r, double g, double b)
-//
-//	t *= 255.99;
-//	r *= 255.99;
-//	g *= 255.99;
-//	b *= 255.99;
-//	return ((int)t << 24 | (int)r << 16 | (int)g << 8 | (int)b);
-//
-
 int	colortrgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
