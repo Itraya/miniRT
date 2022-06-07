@@ -704,7 +704,7 @@ int	verif_input(char *file)
 
 	fd = open(file, O_RDONLY);
 	all_line = NULL;
-	temp = no_double_space(get_next_line(fd));
+	temp = get_next_line(fd);
 	while (temp > 0)
 	{
 		if (temp[0] != '\n')
