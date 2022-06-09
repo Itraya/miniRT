@@ -70,13 +70,37 @@ double	contactpl(t_pl plane, t_ray ray, t_var *p)
 
 	denom = vecdot(plane.way, ray.direction);
 	t = 0;
-	if (abs(denom) > 0.00001)
+	if (abs(denom) > 0.000000001)
 		t = vecdot(vecsub(plane.xyz, ray.origin), plane.way) / denom;
-	if (t < 0.00001)
+	if (t < 0.000000001)
 		return (0);
 	p->data->po = vecadd(ray.origin, vecmult(ray.direction, t));
 	p->data->no = plane.way;
 	return (t);
+}
+
+double	contactcy(t_cy cyl, t_ray ray, t_var *p)
+{
+	double	a;
+	double	b;
+	double	c;
+	double	delta;
+	double	root;
+
+	a = ray.direction.x * ray.direction.x + ray.direction.z * ray.direction.z;
+	a = a - (cyl.height * cyl.height * 1000);
+	// dprintf(2, "a = %f	gerf = %f\n", a, cyl.height * cyl.height);
+	b = 2 * ray.direction.x * (ray.origin.x - cyl.xyz.x) + 2 * ray.direction.z * (ray.origin.z - cyl.xyz.z);
+	c = (ray.origin.x - cyl.xyz.x) * (ray.origin.x - cyl.xyz.x) + (ray.origin.z - cyl.xyz.z) * (ray.origin.z - cyl.xyz.z) - cyl.width * cyl.width;
+	delta = b * b - 4 * a * c;
+	if (delta > 0)
+	{
+		root = (-1 * b - sqrt(delta)) / (2 * a);
+		if (root <= 0)
+			root = (-1 * b + sqrt(delta)) / (2 * a);
+		return (root);
+	}
+	return (0);
 }
 
 int	colortrgb(int t, int r, int g, int b)
@@ -130,14 +154,14 @@ double	intershadow(t_ray myray, t_var *p)
 		if (dist && dist < min_t)
 		{
 			min_t = dist;
-			p->data->smno = p->data->no;
-			p->data->smpo = p->data->po;
+			p->data->shadowno = p->data->no;
+			p->data->shadowpo = p->data->po;
 		}
 		i++;
 	}
 	if (min_t * min_t > vecnorm(vecsub(p->l->xyz, p->data->shadowpo)))
 		return (0.9);
-	return (0);
+	return (0.1);
 }
 
 double	returnluxa(t_vec lux, unsigned char *color, t_var *p)
@@ -157,7 +181,7 @@ double	raycolor(t_ray myray, double min_t, t_var *p, unsigned char *color)
 
 	lux = newvec(color[0], color[1], color[2]);
 	p->data->depthmax--;
-	if (min_t != 99999999999999)
+	if (min_t != 999999999999)
 	{
 		lux = vecmult(lux, intershadow(myray, p));
 		lux = vecmult(lux, p->l->ratio * 50000 * goodlux(vecdot(\
@@ -188,7 +212,7 @@ double	inter(t_ray myray, t_var *p)
 	double			dist;
 
 	i = 0;
-	min_t = 99999999999999;
+	min_t = 999999999999;
 	while (p->sp[i].exist)
 	{
 		dist = contactsp(p->sp[i], myray, p);
@@ -209,6 +233,19 @@ double	inter(t_ray myray, t_var *p)
 		{
 			min_t = dist;
 			assignrgb(rgb, p->pl[i].rgb);
+			p->data->smno = p->data->no;
+			p->data->smpo = p->data->po;
+		}
+		i++;
+	}
+	i = 0;
+	while (p->cy[i].exist)
+	{
+		dist = contactcy(p->cy[i], myray, p);
+		if (dist && dist < min_t)
+		{
+			min_t = dist;
+			assignrgb(rgb, p->cy[i].rgb);
 			p->data->smno = p->data->no;
 			p->data->smpo = p->data->po;
 		}
