@@ -86,21 +86,30 @@ double	contactcy(t_cy cyl, t_ray ray, t_var *p)
 	double	c;
 	double	delta;
 	double	root;
+	double	t1;
+	double	t2;
+	double	z1;
+	double	z2;
 
 	a = ray.direction.x * ray.direction.x + ray.direction.z * ray.direction.z;
-	a = a - (cyl.height * cyl.height * 1000);
-	// dprintf(2, "a = %f	gerf = %f\n", a, cyl.height * cyl.height);
 	b = 2 * ray.direction.x * (ray.origin.x - cyl.xyz.x) + 2 * ray.direction.z * (ray.origin.z - cyl.xyz.z);
 	c = (ray.origin.x - cyl.xyz.x) * (ray.origin.x - cyl.xyz.x) + (ray.origin.z - cyl.xyz.z) * (ray.origin.z - cyl.xyz.z) - cyl.width * cyl.width;
 	delta = b * b - 4 * a * c;
 	if (delta > 0)
 	{
-		root = (-1 * b - sqrt(delta)) / (2 * a);
-		if (root <= 0)
-			root = (-1 * b + sqrt(delta)) / (2 * a);
-		return (root);
+		t1 = (-1 * b - sqrt(delta)) / (2 * a);
+		t2 = (-1 * b + sqrt(delta)) / (2 * a);
+		z1 = ray.origin.y + t1 * ray.direction.y;
+		z2 = ray.origin.y + t2 * ray.direction.y;
+		// dprintf(2, "z1 = %f, z2 = %f\n", z1, z2);
+		if (z1 < cyl.height && z1 > 0)
+			root = t1;
+		else if (z2 < cyl.height && z2 > 0)
+			root = t2;
+		else
+			return (0);
 	}
-	return (0);
+	return (root);
 }
 
 int	colortrgb(int t, int r, int g, int b)

@@ -751,6 +751,6 @@ int	main(int ac, char **av)
 	}
 	print_everything(&p);
 	// simplify(&p);
-	 windowsop(&p);
+	windowsop(&p);
 	free_struc(&p);
 }
