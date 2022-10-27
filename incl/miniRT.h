@@ -129,6 +129,7 @@ typedef struct s_var
 
 //PRINT
 void	print_everything(t_var *p);
+void	print_vec(t_vec t);
 
 //FREE
 void	free_struc(t_var *p);
@@ -159,6 +160,7 @@ int		closewin(t_data *data);
 
 //VECTORS UTILS
 t_vec	vecadd(t_vec v1, t_vec v2);
+t_vec	vecadd3(t_vec v1, t_vec v2, t_vec v3);
 t_vec	vecsub(t_vec v1, t_vec v2);
 t_vec	vecmult(t_vec v1, double mult);
 t_vec	vecdiv(t_vec v1, double mult);

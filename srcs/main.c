@@ -423,6 +423,8 @@ int	parse_struc(t_var *p, char *file)
 	int		fd;
 
 	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (0);
 	all_line = NULL;
 	temp = get_next_line(fd);
 	while (temp > 0)
@@ -715,6 +717,8 @@ int	verif_input(char *file)
 	int		fd;
 
 	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (0);
 	all_line = NULL;
 	temp = get_next_line(fd);
 	while (temp > 0)

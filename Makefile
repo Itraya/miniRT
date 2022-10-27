@@ -32,7 +32,7 @@ NAME	= miniRT
 ### COMPILATION ###
 ##**************###
 CC		= gcc -Ofast
-CFLAGS	= -Wall -Wextra #-Werror #-g3 -fsanitize=address #-fsanitize=address -g3 #-framework CoreFoundation
+CFLAGS	= -Wall -Wextra #-fsanitize=address -g3#-Werror #-g3 -fsanitize=address #-fsanitize=address -g3 #-framework CoreFoundation
 CMLX	= -framework OpenGL -framework AppKit -g -lmlx -Lmlx
 
 ##*******************##
@@ -94,16 +94,15 @@ clean:
 
 fclean:	clean
 		@rm -f ${NAME}
-		@make -C ${MLX} clean
+		# @make -C ${MLX} clean
 		@printf "\n$(CYAN)Executable files cleaned\n$(END)"
 
 re:	fclean
 	@${MAKE} all
 	@printf "\n$(VIOLET)Cleaned and rebuilt everything\n$(END)"
 
-t:
-	gcc -g -lreadline ${SRCS}
-	./a.out
+t:	all
+	./miniRT scenes/test.rt
 
 sus:
 	@echo "$(IRED)           ⣠⣤⣤⣤⣤⣤⣶⣦⣤⣄⡀        $(END)"
