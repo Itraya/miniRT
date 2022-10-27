@@ -99,5 +99,5 @@ void	print_everything(t_var *p)
 
 void	print_vec(t_vec t)
 {
-	dprintf(2, "%f	%f	%f\n", t.x, t.y, t.z);
+	dprintf(1, "%f	%f	%f\n", t.x, t.y, t.z);
 }

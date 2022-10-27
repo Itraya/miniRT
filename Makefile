@@ -52,7 +52,8 @@ OBJS = $(addprefix $(OBJ_PATH)/,$(SOURCES:.c=.o))
 ##****************##
 ### SOURCE FILES ###
 ##****************##
-SOURCES	=	debug.c					\
+SOURCES	=	cylinder.c				\
+			debug.c					\
 			free.c					\
 			ft_join.c				\
 			ft_split.c				\
@@ -60,8 +61,10 @@ SOURCES	=	debug.c					\
 			get_next_line_utils.c	\
 			get_next_line.c			\
 			main.c					\
+			plan.c					\
 			windows.c				\
 			generator.c				\
+			sphere.c				\
 			vectors.c				\
 			simplify.c				\
 
@@ -103,6 +106,9 @@ re:	fclean
 
 t:	all
 	./miniRT scenes/test.rt
+
+t3:	all
+	./miniRT scenes/test3.rt
 
 sus:
 	@echo "$(IRED)           ⣠⣤⣤⣤⣤⣤⣶⣦⣤⣄⡀        $(END)"
