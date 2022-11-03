@@ -103,14 +103,25 @@ double	intershadow(t_ray myray, t_var *p)
 	return (1);
 }
 
-double	returnluxa(t_vec lux, unsigned char *color, t_var *p, double light)
+int	endlux(t_vec lux, t_var *p, double light, unsigned char *color)
 {
-	return (colorrgb(goodlux(lux.x + goodlux(p->a->rgb[0] * p->a->ratio \
-	* color[0] / 255)), \
-					goodlux(lux.y + goodlux (p->a->rgb[1] * p->a->ratio \
-	* color[1] / 255)), \
-					goodlux(lux.z + goodlux(p->a->rgb[2] * p->a->ratio \
-	* color[2] / 255))));
+	int	r;
+	int	g;
+	int	b;
+
+	if (light == 0.1)
+	{
+		r = color[0] * (p->a->rgb[0] / 255.0) * p->a->ratio;
+		g = color[1] * (p->a->rgb[1] / 255.0) * p->a->ratio;
+		b = color[2] * (p->a->rgb[2] / 255.0) * p->a->ratio;
+	}
+	else
+	{
+		r = color[0] * (p->a->rgb[0] / 255.0) * p->a->ratio + lux.x * (p->l->rgb[0] / 255.0) * p->l->ratio;
+		g = color[1] * (p->a->rgb[1] / 255.0) * p->a->ratio + lux.y * (p->l->rgb[1] / 255.0) * p->l->ratio;
+		b = color[2] * (p->a->rgb[2] / 255.0) * p->a->ratio + lux.z * (p->l->rgb[2] / 255.0) * p->l->ratio;
+	}
+	return (colorrgb(goodlux(r), goodlux(g), goodlux(b)));
 }
 
 double	raycolor(t_ray myray, double min_t, t_var *p, unsigned char *color)
@@ -127,7 +138,7 @@ double	raycolor(t_ray myray, double min_t, t_var *p, unsigned char *color)
 		lux = vecmult(lux, p->l->ratio * 50000 * goodlux(vecdot(\
 		getnormalized(vecsub(p->l->xyz, p->data->smpo)), p->data->smno) \
 		/ vecnorm(vecsub(p->l->xyz, p->data->smpo))));
-		return (returnluxa(lux, color, p, light));
+		return (endlux(lux, p, light, color));
 	}
 	return (colorrgb(0, 0, 0));
 }
