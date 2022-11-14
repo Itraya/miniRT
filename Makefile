@@ -52,21 +52,34 @@ OBJS = $(addprefix $(OBJ_PATH)/,$(SOURCES:.c=.o))
 ##****************##
 ### SOURCE FILES ###
 ##****************##
-SOURCES	=	cylinder.c				\
+SOURCES	=	check.c					\
+			color.c					\
+			cone.c					\
+			cylinder.c				\
 			debug.c					\
 			free.c					\
+			ft_ato.c				\
+			ft_create.c				\
+			ft_is.c					\
 			ft_join.c				\
+			ft_malloc.c				\
 			ft_split.c				\
 			ft_testsplit.c			\
+			ft_verif.c				\
+			generator.c				\
 			get_next_line_utils.c	\
 			get_next_line.c			\
+			get.c					\
+			intersection.c			\
 			main.c					\
 			plan.c					\
-			windows.c				\
-			generator.c				\
+			shadow.c				\
 			sphere.c				\
+			strmod.c				\
 			vectors.c				\
-			simplify.c				\
+			vectorscalcul.c			\
+			vectorsnotused.c		\
+			windows.c				\
 
 
 ##*********##
@@ -110,7 +123,7 @@ t:	all
 t3:	all
 	./miniRT scenes/test3.rt
 
-sus:
+sus:	all
 	@echo "$(IRED)           ⣠⣤⣤⣤⣤⣤⣶⣦⣤⣄⡀        $(END)"
 	@echo "$(IRED)        ⢀⣴⣿⡿⠛⠉⠙⠛⠛⠛⠛⠻⢿⣿⣷⣤⡀     $(END)"
 	@echo "$(IRED)        ⣼⣿⠋       ⢀⣀⣀⠈⢻⣿⣿⡄    $(END)"
@@ -129,5 +142,6 @@ sus:
 	@echo "$(WHITE)         ░█▀▀░█░█░█▀▀$(END)"
 	@echo "$(WHITE)         ░▀▀█░█░█░▀▀█$(END)"
 	@echo "$(WHITE)         ░▀▀▀░▀▀▀░▀▀▀$(END)"
+	./${NAME} scenes/sus.rt
 
 .PHONY:	all clean fclean re sus mlx mini

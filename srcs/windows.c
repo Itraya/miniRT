@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   windows.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/04 12:57:30 by mlagrang          #+#    #+#             */
+/*   Updated: 2022/11/14 11:05:53 by mlagrang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incl/miniRT.h"
 
 void	vardef(t_data *data)
@@ -31,7 +43,6 @@ int	key_hook(int keycode, t_var *p)
 		p->c->xyz.y -= 5;
 	if (keycode == 2)
 		p->c->xyz.x += 5;
-
 	if (keycode == 126)
 		p->c->way.y += 0.05;
 	if (keycode == 123)
@@ -40,7 +51,6 @@ int	key_hook(int keycode, t_var *p)
 		p->c->way.y -= 0.05;
 	if (keycode == 124)
 		p->c->way.x += 0.05;
-	
 	generator(p);
 	return (0);
 }

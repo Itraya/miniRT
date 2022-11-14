@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_testsplit.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/04 12:53:52 by mlagrang          #+#    #+#             */
+/*   Updated: 2022/11/04 12:53:53 by mlagrang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incl/miniRT.h"
 
 static int	ft_nb_w(const char *s, char c, char c1)
@@ -13,7 +25,7 @@ static int	ft_nb_w(const char *s, char c, char c1)
 			i++;
 		if (s[i] != '\0')
 			nb++;
-		while (s[i] != c && s[i] !=c1 && s[i])
+		while (s[i] != c && s[i] != c1 && s[i])
 			i++;
 	}
 	return (nb);
@@ -71,4 +83,3 @@ char	**ft_split2(char const *s, char c, char c1)
 	tab[j] = 0;
 	return (tab);
 }
-

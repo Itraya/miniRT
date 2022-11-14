@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   vectorsnotused.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 12:53:29 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/11/04 13:04:15 by mlagrang         ###   ########.fr       */
+/*   Created: 2022/11/04 12:58:30 by mlagrang          #+#    #+#             */
+/*   Updated: 2022/11/04 12:59:22 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/miniRT.h"
 
-void	free_struc(t_var *p)
+t_vec	vecat(t_ray ray, double t)
 {
-	free(p->a);
-	free(p->c);
-	free(p->l);
-	free(p->sp);
-	free(p->pl);
-	free(p->cy);
+	return (vecadd(ray.origin, vecmult(ray.direction, t)));
 }
 
-int	free_split(char **a)
+t_vec	vecunit(t_vec v1)
 {
-	int	i;
+	return (vecdiv(v1, veclen(v1)));
+}
 
-	i = 0;
-	while (a[i])
-		free(a[i++]);
-	free(a);
-	return (0);
+double	veclen(t_vec v1)
+{
+	return (sqrt(vecnorm(v1)));
+}
+
+t_vec	vecdiv(t_vec v1, double mult)
+{
+	t_vec	new;
+
+	new = vecmult(v1, 1 / mult);
+	return (new);
 }
