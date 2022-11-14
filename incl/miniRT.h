@@ -199,6 +199,7 @@ int		ft_is_int(char *s);
 int		ft_is_triint(char *s);
 int		ft_is_do(char *s);
 int		ft_is_trido(char *s);
+int		ft_is_alphanum(char **split);
 
 //FT_JOIN
 char	*ft_joinc(char *s1, char c);

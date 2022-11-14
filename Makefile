@@ -60,6 +60,7 @@ SOURCES	=	check.c					\
 			free.c					\
 			ft_ato.c				\
 			ft_create.c				\
+			ft_is2.c				\
 			ft_is.c					\
 			ft_join.c				\
 			ft_malloc.c				\

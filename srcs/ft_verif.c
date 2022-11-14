@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 13:11:21 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/11/04 13:28:51 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:12:45 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_verif(char **lines)
 		split = ft_split2(lines[i], ' ', '	');
 		if (!split)
 			return (0);
-		if (!ft_is_alpha(split[0]))
+		if (!ft_is_alpha(split[0]) || !ft_is_alphanum(split))
 			return (free_split(split));
 		if (split[0][0] == 'A' || split[0][0] == 'C' || split[0][0] == 'L')
 			ft_increase(m, split[0][0]);
