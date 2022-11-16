@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   miniRT.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsedat <vsedat@student.42lyon.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/16 17:47:41 by vsedat            #+#    #+#             */
+/*   Updated: 2022/11/16 17:47:42 by vsedat           ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINIRT_H
 # define MINIRT_H
 
@@ -32,6 +44,7 @@ typedef struct s_data
 	int				winlength;
 	int				sampleppix;
 	int				depthmax;
+	int				colorit;
 	t_vec			po;
 	t_vec			smpo;
 	t_vec			no;
@@ -72,6 +85,12 @@ typedef struct s_l
 	unsigned char	rgb[3];
 	int				exist;
 }				t_l;
+
+//l colors
+typedef struct s_pal
+{
+	unsigned char	rgb[3];
+}						t_pal;
 
 //Sphere:
 typedef struct s_sp

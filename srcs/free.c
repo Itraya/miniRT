@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsedat <vsedat@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:53:29 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/11/04 13:04:15 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:46:32 by vsedat           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/miniRT.h"
+
+int	closewin(t_data *data)
+{
+	mlx_clear_window(data->mlx, data->win);
+	mlx_destroy_window(data->mlx, data->win);
+	exit(EXIT_SUCCESS);
+	return (0);
+}
 
 void	free_struc(t_var *p)
 {
