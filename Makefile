@@ -145,4 +145,22 @@ sus:	all
 	@echo "$(WHITE)         ░▀▀▀░▀▀▀░▀▀▀$(END)"
 	./${NAME} scenes/sus.rt
 
-.PHONY:	all clean fclean re sus mlx mini
+susleft:	all
+			./${NAME} scenes/susleft.rt
+
+susright:	all
+			./${NAME} scenes/susright.rt
+
+susup:	all
+		./${NAME} scenes/susup.rt
+
+susdown:	all
+			./${NAME} scenes/susdown.rt
+
+color:	all
+		./${NAME} scenes/happycolor.rt
+
+42:	all
+		./${NAME} scenes/intheshadow.rt
+
+.PHONY:	all clean fclean re sus mlx mini susleft susright susup susdown color 42
