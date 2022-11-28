@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 14:00:09 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/11/14 13:57:05 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:27:57 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ double	square(double t)
 
 double	contactco(t_co con, t_ray ray, t_var *p)
 {
-	return (0);
+	// return (0);
 	// t_vec B = vecadd(con.xyz, vecmult(con.way, con.height));
 	// t_vec d = getnormalized(vecsub(B, con.xyz));
 	// t_vec	D = ray.direction;
@@ -81,6 +81,7 @@ double	contactco(t_co con, t_ray ray, t_var *p)
 		return (0);
 	// if (vecdot(vecsub(L, H), hh) > vecnorm(h))
 	// 	return (0);
+	// dprintf(2, "%d	%d\n", p->x, p->y);
 	return (root);
 }
 
