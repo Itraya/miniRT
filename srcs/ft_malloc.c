@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 13:05:39 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/11/14 13:57:02 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:22:26 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,6 @@ int	ft_malloc_all(char **lines, t_var *p)
 	if (!ft_malloc_pl(p, lines))
 		return (0);
 	if (!ft_malloc_cy(p, lines))
-		return (0);
-	if (!ft_malloc_co(p, lines))
 		return (0);
 	return (1);
 }

@@ -6,31 +6,22 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:52:20 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/01 13:17:48 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:23:15 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/miniRT.h"
 
-static double	square(double t)
-{
-	return (t * t);
-}
-
 t_pl	createcap(t_cy cyl, int way)
 {
 	t_pl	cap;
-	double	mult;
 
 	assignrgb(cap.rgb, cyl.rgb);
 	cap.way = vecmult(cyl.way, way);
 	if (way == 1)
 	{
-		// mult = (square(cyl.xyz.x) + square(cyl.xyz.y) + square(cyl.xyz.z) + cyl.height * sqrt(square(cyl.xyz.x) + square(cyl.xyz.y) + square(cyl.xyz.z))) / (square(cyl.xyz.x) + square(cyl.xyz.y) + square(cyl.xyz.z));
-		// // dprintf(1, "%f\n", mult);
-		// cap.xyz = vecadd(cyl.xyz, vecmult(cyl.way, mult));
-		// cap.xyz = vecadd(cyl.xyz, cappos(cyl.way, cyl.height));
-		cap.xyz = vecadd(cyl.xyz, vecmult(getnormalized(cyl.way), cyl.height));
+		cap.xyz = vecadd(cyl.xyz, vecmult(getnormalized(cyl.way), \
+		cyl.height));
 	}
 	else
 		cap.xyz = cyl.xyz;

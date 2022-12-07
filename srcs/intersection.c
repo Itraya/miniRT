@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:56:39 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/01 13:46:52 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:22:06 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,5 @@ double	inter(t_ray myray, t_var *p)
 	min_t = inter_sp(p, myray, min_t, rgb);
 	min_t = inter_pl(p, myray, min_t, rgb);
 	min_t = inter_cy(p, myray, min_t, rgb);
-	min_t = inter_co(p, myray, min_t, rgb);
 	return (raycolor(min_t, p, rgb));
 }

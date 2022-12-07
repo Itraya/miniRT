@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsedat <vsedat@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 17:47:41 by vsedat            #+#    #+#             */
-/*   Updated: 2022/11/16 17:47:42 by vsedat           ###   ########lyon.fr   */
+/*   Updated: 2022/12/07 14:22:20 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,12 +165,10 @@ double	contactpl(t_pl plane, t_ray ray, t_var *p);
 double	contactcy(t_cy cyl, t_ray ray, t_var *p);
 double	contactcap(t_cy cyl, t_ray ray, t_var *p);
 double	contactcap2(t_cy cyl, t_ray ray, t_var *p);
-double	contactco(t_co cyl, t_ray ray, t_var *p);
 
 //INTERSECTIONS
 double	inter_sp(t_var *p, t_ray myray, double min_t, unsigned char rgb[3]);
 double	inter_pl(t_var *p, t_ray myray, double min_t, unsigned char rgb[3]);
-double	inter_co(t_var *p, t_ray myray, double min_t, unsigned char rgb[3]);
 double	inter(t_ray myray, t_var *p);
 double	intershadow(t_var *p);
 
@@ -232,7 +230,6 @@ int		ft_malloc_l(t_var *p, char **lines);
 int		ft_malloc_sp(t_var *p, char **lines);
 int		ft_malloc_pl(t_var *p, char **lines);
 int		ft_malloc_cy(t_var *p, char **lines);
-int		ft_malloc_co(t_var *p, char **lines);
 int		ft_malloc_all(char **lines, t_var *p);
 
 //FT_SPLIT

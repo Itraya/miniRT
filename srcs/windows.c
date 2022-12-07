@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:57:30 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/01 13:25:23 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/07 15:11:41 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	key_hook(int keycode, t_var *p)
 	if (keycode == 37 && p->a->ratio != 0)
 		p->a->ratio = 0;
 	else if (keycode == 37 && p->a->ratio == 0)
-		p->a->ratio = 0.8;
+		p->a->ratio = 0.15;
 	key_hook2(keycode, p);
 	generator(p);
 	return (0);

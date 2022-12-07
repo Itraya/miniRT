@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:56:50 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/01 13:25:44 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:19:13 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	main(int ac, char **av)
 		dprintf(2, "problem in parsing\n");
 		return (1);
 	}
-	// print_everything(&p);
 	windowsop(&p);
 	free_struc(&p);
 }

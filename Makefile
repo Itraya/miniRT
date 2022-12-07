@@ -31,7 +31,7 @@ NAME	= miniRT
 ##***************##
 ### COMPILATION ###
 ##**************###
-CC		= gcc -Ofast
+CC		= gcc -Ofast -march=native
 CFLAGS	= -Wall -Wextra #-fsanitize=address -g3#-Werror #-g3 -fsanitize=address #-fsanitize=address -g3 #-framework CoreFoundation
 CMLX	= -framework OpenGL -framework AppKit -g -lmlx -Lmlx
 
@@ -54,9 +54,7 @@ OBJS = $(addprefix $(OBJ_PATH)/,$(SOURCES:.c=.o))
 ##****************##
 SOURCES	=	check.c					\
 			color.c					\
-			cone.c					\
 			cylinder.c				\
-			debug.c					\
 			free.c					\
 			ft_ato.c				\
 			ft_create.c				\
