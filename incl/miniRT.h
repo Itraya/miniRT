@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 17:47:41 by vsedat            #+#    #+#             */
-/*   Updated: 2022/12/07 14:22:20 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/09 13:47:31 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,5 +285,7 @@ double	veclen(t_vec v1);
 t_vec	vecat(t_ray ray, double t);
 t_vec	getnorm(t_vec v1);
 t_vec	getnormalized(t_vec v1);
+t_vec	vec_rotate(t_vec vec, t_vec a, float theta);
+t_vec	vec_rotate_y(t_vec vec, float theta);
 
 #endif

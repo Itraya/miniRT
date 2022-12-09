@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:54:00 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/11/14 13:11:54 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:23:05 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,12 @@ double	raycolor(double min_t, t_var *p, unsigned char *color)
 
 t_vec	getup(t_vec way)
 {
-	t_vec	ret;
-	double	norm;
+	t_vec	up;
+	t_vec	res;
 
-	norm = vecnorm(way);
-	ret.x = - way.x / norm;
-	ret.y = way.y / norm;
-	ret.z = - way.z / norm;
+	up = newvec(0, 1, 0);
+	res = veccross(veccross(way, up), way);
+	return (res);
 	return (newvec(0,1,0));
 }
 
@@ -59,21 +58,16 @@ void	algo(t_var *p, int x, int y)
 	t_ray	myray;
 	int		i;
 	double	color;
-	double	z;
 
 	myray.origin = p->c->xyz;
 	myray.direction = newvec(x - p->data->winwidth / 2, y - p->data->winlength \
 	/ 2, (-p->data->winwidth / (2 * tan((p->c->fov * M_PI / 180) / 2))));
 	normalize(myray.direction);
-	z = p->c->way.z;
-	p->c->way.z = 1;
 	myray.direction = vecadd3(vecmult(veccross(p->c->way, getup(p->c->way)), \
 	myray.direction.x), vecmult(getup(p->c->way), myray.direction.y), \
 	vecmult(p->c->way, myray.direction.z));
-	//myray.direction = veccross(myray.direction, p->c->way);
-	//dprintf(2, "%f	%f	%f\n", myray.direction.x, myray.direction.y, myray.direction.z);
+	// dprintf(2, "%f	%f	%f\n", myray.direction.x, myray.direction.y, myray.direction.z);
 
-	p->c->way.z = z;
 	i = 0;
 	color = 0;
 	while (i < p->data->sampleppix)
