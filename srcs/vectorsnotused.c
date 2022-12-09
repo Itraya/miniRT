@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:58:30 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/09 13:47:24 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:02:27 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,18 @@ t_vec	vecdiv(t_vec v1, double mult)
 	return (new);
 }
 
-t_vec	vec_rotate(t_vec vec, t_vec a, float theta)
+t_vec	met_a_un(t_vec v1)
 {
-	t_vec	res;
+	double	mult;
 
-	res.x = a.x * (a.x * vec.x + a.y * vec.y + a.z * vec.z) * (1 - cos(theta))
-		+ vec.x * cos(theta)
-		+ (-a.z * vec.y + a.y * vec.z) * sin(theta);
-	res.y = a.y * (a.x * vec.x + a.y * vec.y + a.z * vec.z) * (1 - cos(theta))
-		+ vec.y * cos(theta)
-		+ (a.z * vec.x - a.x * vec.z) * sin(theta);
-	res.z = a.z * (a.x * vec.x + a.y * vec.y + a.z * vec.z) * (1 - cos(theta))
-		+ vec.z * cos(theta)
-		+ (-a.y * vec.x + a.x * vec.y) * sin(theta);
-	return (res);
-}
-
-t_vec	vec_rotate_y(t_vec vec, float theta)
-{
-	t_vec	res;
-
-	res.x = vec.x * cos(theta) + vec.z * sin(theta);
-	res.y = vec.y;
-	res.z = -vec.x * sin(theta) + vec.z * cos(theta);
-	return (res);
+	if (v1.x >= v1.y && v1.x >= v1.z)
+		mult = v1.x;
+	if (v1.y >= v1.x && v1.y >= v1.z)
+		mult = v1.y;
+	if (v1.z >= v1.x && v1.z >= v1.y)
+		mult = v1.z;
+	v1.x /= mult;
+	v1.y /= mult;
+	v1.z /= mult;
+	return (v1);
 }
