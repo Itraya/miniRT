@@ -38,12 +38,10 @@ int	ft_is_int(char *s)
 int	ft_is_triint(char *s)
 {
 	int				i;
-	int				j;
 	int				ret;
 	unsigned char	t[3];
 
 	i = 0;
-	j = 0;
 	ret = 0;
 	while (s[i])
 	{
@@ -97,8 +95,9 @@ int	ft_is_trido(char *s)
 			i++;
 		while (s[i] && s[i] >= '0' && s[i] <= '9')
 			i++;
-		if (s[i] && s[i] != ',')
+		if ((s[i] && s[i] != ',') || (s[i] && s[i] == ',' && j == 3))
 			return (0);
+		i++;
 	}
 	return (1);
 }

@@ -50,6 +50,8 @@ int	verif_input(char *file)
 		return (0);
 	all_line = NULL;
 	temp = get_next_line(fd);
+	if (!temp)
+		return (0);
 	while (temp > 0)
 	{
 		if (is_empty(temp))

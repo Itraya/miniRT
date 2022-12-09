@@ -31,7 +31,7 @@ NAME	= miniRT
 ##***************##
 ### COMPILATION ###
 ##**************###
-CC		= gcc -Ofast -march=native
+CC		= gcc
 CFLAGS	= -Wall -Wextra #-fsanitize=address -g3#-Werror #-g3 -fsanitize=address #-fsanitize=address -g3 #-framework CoreFoundation
 CMLX	= -framework OpenGL -framework AppKit -g -lmlx -Lmlx
 

@@ -42,24 +42,16 @@ double	raycolor(double min_t, t_var *p, unsigned char *color)
 	return (colorrgb(0, 0, 0));
 }
 
-t_vec	getup(double z)
+t_vec	getup(t_vec way)
 {
-	if (z >= 0 && z <= 0.25)
-		return (newvec(z / 0.25, 1, 0));
-	else if (z >= 0.25 && z <= 0.5)
-		return (newvec(1, 1 - (z - 0.25) / 0.25, 0));
-	else if (z >= 0.5 && z <= 0.75)
-		return (newvec(1, -1 + (z - 0.75) / 0.25, 0));
-	else if (z >= 0.75 && z <= 1)
-		return (newvec(1 - z, -1, 0));
-	else if (z <= 0 && z >= -0.25)
-		return (newvec(z / 0.25, 1, 0));
-	else if (z <= -0.25 && z >= -0.5)
-		return (newvec(-1, 1 - (z + 0.25) / -0.25, 0));
-	else if (z <= -0.5 && z >= -0.75)
-		return (newvec(-1, -1 - (z + 0.75) / -0.25, 0));
-	else
-		return (newvec(-1 - z, -1, 0));
+	t_vec	ret;
+	double	norm;
+
+	norm = vecnorm(way);
+	ret.x = - way.x / norm;
+	ret.y = way.y / norm;
+	ret.z = - way.z / norm;
+	return (newvec(0,1,0));
 }
 
 void	algo(t_var *p, int x, int y)
@@ -75,9 +67,12 @@ void	algo(t_var *p, int x, int y)
 	normalize(myray.direction);
 	z = p->c->way.z;
 	p->c->way.z = 1;
-	myray.direction = vecadd3(vecmult(veccross(p->c->way, getup(z)), \
-	myray.direction.x), vecmult(getup(z), myray.direction.y), \
+	myray.direction = vecadd3(vecmult(veccross(p->c->way, getup(p->c->way)), \
+	myray.direction.x), vecmult(getup(p->c->way), myray.direction.y), \
 	vecmult(p->c->way, myray.direction.z));
+	//myray.direction = veccross(myray.direction, p->c->way);
+	//dprintf(2, "%f	%f	%f\n", myray.direction.x, myray.direction.y, myray.direction.z);
+
 	p->c->way.z = z;
 	i = 0;
 	color = 0;

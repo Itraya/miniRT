@@ -41,13 +41,23 @@ int	is_empty(char *s)
 	return (1);
 }
 
+int	verif_end(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	if (str[i - 2] == 'r' && str[i - 1] == 't')
+		return (1);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_var	p;
 
-	if (ac != 2)
-		return (1);
-	if (!verif_input(av[1]))
+	if (ac != 2 || !verif_end(av[1]) || !verif_input(av[1]))
 	{
 		dprintf(2, "input problem\n");
 		return (1);

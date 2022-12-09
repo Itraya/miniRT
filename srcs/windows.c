@@ -17,7 +17,7 @@ void	vardef(t_data *data)
 	double	aspect_ratio;
 
 	aspect_ratio = 16.0 / 9.0;
-	data->winwidth = 1000;
+	data->winwidth = 700;
 	data->winlength = data->winwidth;
 	data->sampleppix = 1;
 	data->depthmax = 50;
