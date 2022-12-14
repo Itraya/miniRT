@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:54:00 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/09 16:02:50 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/13 15:14:22 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,12 @@ void	algo(t_var *p, int x, int y)
 	double	color;
 
 	myray.origin = p->c->xyz;
-	p->c->way = met_a_un(p->c->way);
-	// dprintf(2, "%f	%f	%f\n", p->c->way.x, p->c->way.y, p->c->way.z);
 	myray.direction = newvec(x - p->data->winwidth / 2, y - p->data->winlength \
 	/ 2, (-p->data->winwidth / (2 * tan((p->c->fov * M_PI / 180) / 2))));
 	normalize(myray.direction);
 	myray.direction = vecadd3(vecmult(veccross(p->c->way, getup(p->c->way)), \
 	myray.direction.x), vecmult(getup(p->c->way), myray.direction.y), \
 	vecmult(p->c->way, myray.direction.z));
-
 	i = 0;
 	color = 0;
 	while (i < p->data->sampleppix)
@@ -82,6 +79,8 @@ void	generator(t_var *p)
 	int	x;
 	int	y;
 
+	p->c->way = met_a_un(p->c->way);
+	dprintf(2, "%f	%f	%f\n", p->c->way.x, p->c->way.y, p->c->way.z);
 	x = 0;
 	while (x < p->data->winlength)
 	{

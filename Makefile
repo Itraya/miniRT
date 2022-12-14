@@ -161,4 +161,13 @@ color:	all
 42:	all
 		./${NAME} scenes/intheshadow.rt
 
+front:	all
+		./${NAME} scenes/front.rt
+back:	all
+		./${NAME} scenes/back.rt
+left:	all
+		./${NAME} scenes/left.rt
+right:	all
+		./${NAME} scenes/right.rt
+
 .PHONY:	all clean fclean re sus mlx mini susleft susright susup susdown color 42

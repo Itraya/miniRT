@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:58:30 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/09 16:53:05 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:25:10 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_vec	met_a_un(t_vec v1)
 	if (fabs(v1.y) >= fabs(v1.x) && fabs(v1.y) >= fabs(v1.z))
 		mult = fabs(v1.y);
 	if (fabs(v1.z) >= fabs(v1.x) && fabs(v1.z) >= fabs(v1.y))
-		mult = v1.z;
+		mult = fabs(v1.z);
 	v1.x /= mult;
 	v1.y /= mult;
 	v1.z /= mult;

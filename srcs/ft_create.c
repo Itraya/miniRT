@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 13:09:25 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/11/04 13:09:41 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/13 15:10:30 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ft_create_a(char *line, t_a *fig)
 	if (!split)
 		return (0);
 	fig->ratio = ft_atof(split[1]);
+	fig->init_ratio = fig->ratio;
 	if (!get_triple_un(split[2], fig->rgb))
 		return (free_split(split));
 	free_split(split);
@@ -55,6 +56,7 @@ int	ft_create_l(char *line, t_l *fig)
 	if (!get_triple_do(split[1], &fig->xyz))
 		return (free_split(split));
 	fig->ratio = ft_atof(split[2]);
+	fig->init_ratio = fig->ratio;
 	if (!get_triple_un(split[3], fig->rgb))
 		return (free_split(split));
 	free_split(split);

@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 17:47:41 by vsedat            #+#    #+#             */
-/*   Updated: 2022/12/09 16:02:31 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/13 15:09:11 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_ray
 typedef struct s_a
 {
 	double			ratio;
+	double			init_ratio;
 	unsigned char	rgb[3];
 	int				exist;
 }				t_a;
@@ -82,6 +83,7 @@ typedef struct s_l
 {
 	t_vec			xyz;
 	double			ratio;
+	double			init_ratio;
 	unsigned char	rgb[3];
 	int				exist;
 }				t_l;
