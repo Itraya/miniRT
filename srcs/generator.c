@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:54:00 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/13 15:14:22 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/14 10:35:56 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	generator(t_var *p)
 	int	y;
 
 	p->c->way = met_a_un(p->c->way);
-	dprintf(2, "%f	%f	%f\n", p->c->way.x, p->c->way.y, p->c->way.z);
 	x = 0;
 	while (x < p->data->winlength)
 	{

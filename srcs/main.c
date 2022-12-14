@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:56:50 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/07 14:19:13 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/14 10:38:29 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ int	main(int ac, char **av)
 
 	if (ac != 2 || !verif_end(av[1]) || !verif_input(av[1]))
 	{
-		dprintf(2, "input problem\n");
+		ft_putstr_fd("input problem\n", 2);
 		return (1);
 	}
 	if (!parse_struc(&p, av[1]))
 	{
-		dprintf(2, "problem in parsing\n");
+		ft_putstr_fd("problem in parsing\n", 2);
 		return (1);
 	}
 	windowsop(&p);

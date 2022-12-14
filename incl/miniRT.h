@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 17:47:41 by vsedat            #+#    #+#             */
-/*   Updated: 2022/12/13 15:09:11 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/14 10:39:25 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,8 +190,7 @@ int		check_pl(char **lines);
 int		check_cy(char **lines);
 
 //PRINT
-void	print_everything(t_var *p);
-void	print_vec(t_vec t);
+void	ft_putstr_fd(char *str, int fd);
 
 //FREE
 void	free_struc(t_var *p);

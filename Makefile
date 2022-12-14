@@ -72,6 +72,7 @@ SOURCES	=	check.c					\
 			intersection.c			\
 			main.c					\
 			plan.c					\
+			print.c					\
 			shadow.c				\
 			sphere.c				\
 			strmod.c				\
