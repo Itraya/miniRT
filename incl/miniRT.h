@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 17:47:41 by vsedat            #+#    #+#             */
-/*   Updated: 2022/12/14 10:39:25 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/14 10:49:43 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +217,7 @@ int		ft_is_int(char *s);
 int		ft_is_triint(char *s);
 int		ft_is_do(char *s);
 int		ft_is_trido(char *s);
-int		ft_is_alphanum(char **split);
+int		ft_is_num(char **split);
 
 //FT_JOIN
 char	*ft_joinc(char *s1, char c);
