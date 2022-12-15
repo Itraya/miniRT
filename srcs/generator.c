@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:54:00 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/14 10:35:56 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:46:37 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ double	raycolor(double min_t, t_var *p, unsigned char *color)
 
 t_vec	getup(t_vec way)
 {
-	return (veccross(veccross(way, newvec(0, 1, 0)), way));
+	return (getnormalized(veccross(veccross(way, newvec(0, 1, 0)), way)));
 }
 
 void	algo(t_var *p, int x, int y)

@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 17:47:41 by vsedat            #+#    #+#             */
-/*   Updated: 2022/12/14 10:49:43 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:49:03 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,9 @@ int		check_pl(char **lines);
 int		check_cy(char **lines);
 
 //PRINT
+int		ft_error(char **split);
 void	ft_putstr_fd(char *str, int fd);
+int		ft_puterror(char *str);
 
 //FREE
 void	free_struc(t_var *p);
@@ -234,6 +236,7 @@ int		ft_malloc_cy(t_var *p, char **lines);
 int		ft_malloc_all(char **lines, t_var *p);
 
 //FT_SPLIT
+int		ft_nb_w(const char *s, char c);
 char	**ft_split(char const *s, char c);
 char	**ft_split2(char const *s, char c, char c1);
 

@@ -6,13 +6,13 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:53:36 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/11/04 12:53:37 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:47:52 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/miniRT.h"
 
-static int	ft_nb_w(const char *s, char c)
+int	ft_nb_w(const char *s, char c)
 {
 	int	i;
 	int	nb;

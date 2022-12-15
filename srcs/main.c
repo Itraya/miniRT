@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:56:50 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/14 11:04:31 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:48:43 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,21 @@ int	main(int ac, char **av)
 {
 	t_var	p;
 
-	if (ac != 2 || !verif_end(av[1]) || !verif_input(av[1]))
+	if (ac != 2 || !verif_end(av[1]))
 	{
-		ft_putstr_fd("input problem\n", 2);
-		return (1);
+		ft_putstr_fd("Error\nCheck input\n", 2);
+		exit(1);
 	}
+	if (!verif_input(av[1]))
+		exit(1);
 	if (!parse_struc(&p, av[1]))
 	{
-		ft_putstr_fd("problem in parsing\n", 2);
-		return (1);
+		ft_putstr_fd("Error\nAn error occured during parsing\n", 2);
+		exit(1);
 	}
+	if (p.c->way.x == 0 && p.c->way.y != 0 && p.c->way.z == 0)
+		p.c->way.z = pow(10, -161);
 	windowsop(&p);
 	free_struc(&p);
+	return (0);
 }

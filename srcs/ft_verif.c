@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 13:11:21 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/14 10:49:31 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:01:17 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,18 @@ int	ft_verif(char **lines)
 		if (!split)
 			return (0);
 		if (!ft_is_alpha(split[0]) || !ft_is_num(split))
-			return (free_split(split));
+			return (ft_error(split));
 		if (split[0][0] == 'A' || split[0][0] == 'C' || split[0][0] == 'L')
 			ft_increase(m, split[0][0]);
 		if (m[0] > 1 || m[1] > 1 || m[2] > 1)
-			return (free_split(split));
+			return (ft_error(split));
 		if (!check_digits(split))
-			return (free_split(split));
+			return (ft_error(split));
 		free_split(split);
 		i++;
 	}
+	if (m[1] != 1)
+		return (ft_puterror("Error\nNo cam found\n"));
 	return (1);
 }
 
@@ -47,11 +49,11 @@ int	verif_input(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (0);
+		return (ft_puterror("Error\nNo such file\n"));
 	all_line = NULL;
 	temp = get_next_line(fd);
 	if (!temp)
-		return (0);
+		return (ft_puterror("Error\nAn error occured during read"));
 	while (temp > 0)
 	{
 		if (is_empty(temp))
