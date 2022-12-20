@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:56:50 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/20 11:56:12 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/20 11:59:08 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	verif_end(char *str)
 	i = 0;
 	while (str[i])
 		i++;
-	if (str[i - 3] == '.' && str[i - 2] == 'r' && str[i - 1] == 't')
+	if (i > 3 && str[i - 3] == '.' && str[i - 2] == 'r' && str[i - 1] == 't')
 		return (1);
 	return (0);
 }
