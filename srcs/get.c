@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 13:14:20 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/11/04 13:14:42 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/20 11:43:13 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	get_triple_do(char *s, t_vec *t)
 	split = ft_split(s, ',');
 	if (!split)
 		return (0);
-	if (split[3])
+	if (!split[0] || !split[1] || !split[2] || split[3])
 		return (free_split(split));
 	t->x = ft_atof(split[0]);
 	t->y = ft_atof(split[1]);
@@ -35,7 +35,7 @@ int	get_triple_un(char *s, unsigned char t[3])
 	split = ft_split(s, ',');
 	if (!split)
 		return (0);
-	if (split[3])
+	if (!split[0] || !split[1] || !split[2] || split[3])
 		return (free_split(split));
 	if (ft_atoi(split[0]) < 0 || ft_atoi(split[0]) > 255 \
 	|| ft_atoi(split[1]) < 0 || ft_atoi(split[1]) > 255 \
