@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 13:05:39 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/14 16:56:40 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/20 11:24:35 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int	ft_malloc_a(t_var *p, char **lines)
 			if (!ft_create_a(lines[i], &fig[len++]))
 				return (0);
 	fig[len].exist = 0;
+	fig[len].rgb[0] = 0;
+	fig[len].rgb[1] = 0;
+	fig[len].rgb[2] = 0;
 	p->a = fig;
 	return (1);
 }
@@ -83,6 +86,9 @@ int	ft_malloc_l(t_var *p, char **lines)
 			if (!ft_create_l(lines[i], &fig[len++]))
 				return (0);
 	fig[len].exist = 0;
+	fig[len].rgb[0] = 0;
+	fig[len].rgb[1] = 0;
+	fig[len].rgb[2] = 0;
 	p->l = fig;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:56:50 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/14 17:48:43 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/20 10:45:54 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	main(int ac, char **av)
 		exit(1);
 	}
 	if (p.c->way.x == 0 && p.c->way.y != 0 && p.c->way.z == 0)
-		p.c->way.z = pow(10, -161);
+		p.c->way.z = 1e-323;
 	windowsop(&p);
 	free_struc(&p);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:57:30 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/13 15:12:41 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/20 11:11:41 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	vardef(t_data *data)
 
 int	key_hook3(int keycode, t_var *p, t_pal *tab)
 {
-	if (keycode == 40 && p->l->ratio != 0)
+	if (keycode == 40 && p->l->ratio != 0 && p->l->exist)
 		p->l->ratio = 0;
-	else if (keycode == 40 && p->l->ratio == 0)
+	else if (keycode == 40 && p->l->ratio == 0 && p->l->exist)
 		p->l->ratio = p->l->init_ratio;
 	srand (10);
 	if (keycode == 15)
@@ -71,9 +71,9 @@ int	key_hook(int keycode, t_var *p)
 {
 	if (keycode == 53)
 		closewin(p->data);
-	if (keycode == 37 && p->a->ratio != 0)
+	if (keycode == 37 && p->a->ratio != 0 && p->a->exist)
 		p->a->ratio = 0;
-	else if (keycode == 37 && p->a->ratio == 0)
+	else if (keycode == 37 && p->a->ratio == 0 && p->a->exist)
 		p->a->ratio = p->a->init_ratio;
 	key_hook2(keycode, p);
 	generator(p);

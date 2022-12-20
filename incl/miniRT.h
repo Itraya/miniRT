@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 17:47:41 by vsedat            #+#    #+#             */
-/*   Updated: 2022/12/14 16:49:03 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/20 11:19:25 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include <limits.h>
 
 //Vecs
 typedef struct s_vec
@@ -175,7 +176,6 @@ double	inter(t_ray myray, t_var *p);
 double	intershadow(t_var *p);
 
 //COLOR
-int		colortrgb(int t, int r, int g, int b);
 int		colorrgb(int r, int g, int b);
 double	goodlux(double num);
 int		endlux(t_vec lux, t_var *p, double light, unsigned char *color);

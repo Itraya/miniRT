@@ -6,16 +6,11 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:54:24 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/11/04 12:56:11 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/20 11:21:08 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/miniRT.h"
-
-int	colortrgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
 
 int	colorrgb(int r, int g, int b)
 {
