@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 13:13:31 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/11/04 13:37:43 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/20 11:38:37 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	check_l(char **lines)
 {
+	if (!lines[0] || !lines[1] || !lines[2] || !lines[3])
+		return (0);
 	if (!ft_is_trido(lines[1]))
 		return (0);
 	if (!ft_is_do(lines[2]) || \
@@ -28,6 +30,8 @@ int	check_l(char **lines)
 
 int	check_sp(char **lines)
 {
+	if (!lines[0] || !lines[1] || !lines[2] || !lines[3])
+		return (0);
 	if (!ft_is_trido(lines[1]))
 		return (0);
 	if (!ft_is_do(lines[2]) || ft_atof(lines[2]) <= 0)
@@ -43,6 +47,8 @@ int	check_pl(char **lines)
 {
 	t_vec	t;
 
+	if (!lines[0] || !lines[1] || !lines[2] || !lines[3])
+		return (0);
 	if (!ft_is_trido(lines[1]))
 		return (0);
 	if (!ft_is_trido(lines[2]))
@@ -62,6 +68,9 @@ int	check_cy(char **lines)
 {
 	t_vec	t;
 
+	if (!lines[0] || !lines[1] || !lines[2] || !lines[3] || !lines[4] || \
+		!lines[5])
+		return (0);
 	if (!ft_is_trido(lines[1]))
 		return (0);
 	if (!ft_is_trido(lines[2]))

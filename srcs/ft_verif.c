@@ -6,7 +6,7 @@
 /*   By: mlagrang <mlagrang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 13:11:21 by mlagrang          #+#    #+#             */
-/*   Updated: 2022/12/14 17:01:17 by mlagrang         ###   ########.fr       */
+/*   Updated: 2022/12/20 11:37:02 by mlagrang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int	check_digits(char **lines)
 
 int	check_a(char **lines)
 {
+	if (!lines[0] || !lines[1] || !lines[2])
+		return (0);
 	if (!ft_is_do(lines[1]) || \
 	ft_atof(lines[1]) < 0.0 || ft_atof(lines[1]) > 1.0)
 		return (0);
@@ -103,6 +105,8 @@ int	check_c(char **lines)
 {
 	t_vec	t;
 
+	if (!lines[0] || !lines[1] || !lines[2] || !lines[3])
+		return (0);
 	if (!ft_is_trido(lines[1]))
 		return (0);
 	if (!ft_is_trido(lines[2]))
