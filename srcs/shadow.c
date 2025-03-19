@@ -59,14 +59,12 @@ double	intershadow_while(t_var *p, t_ray rebund, double dist, double min_t)
 double	intershadow(t_var *p)
 {
 	t_ray	rebund;
-	int		i;
 	double	dist;
 	double	min_t;
 
 	dist = 0;
 	rebund.origin = vecadd(p->data->smpo, vecmult(p->data->smno, 0.01));
 	rebund.direction = getnormalized(vecsub(p->l->xyz, p->data->smpo));
-	i = 0;
 	min_t = vecnorm(vecsub(p->l->xyz, p->data->smpo));
 	return (intershadow_while(p, rebund, dist, min_t));
 }
