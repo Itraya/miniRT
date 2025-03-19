@@ -37,6 +37,13 @@ Lancez le programme avec un fichier de scène :
 ```bash
 ./miniRT scenes/test.rt
 ```
+
+Intéractions :
+
+- L : active/désactive la lumière ambiante
+- K : active/désactive la source de lumière
+- R : change la couleur de la source de lumière
+- Échap : quitter le programme
 ## Captures d'écran
 
 ![Sus](https://github.com/Itraya/miniRT/blob/master/imgs/3.png?raw=true)
